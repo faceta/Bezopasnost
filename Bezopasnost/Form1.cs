@@ -19,13 +19,13 @@ namespace Bezopasnost
         public string connect = "Data Source=localhost;Initial Catalog=bezopasn;Integrated Security=True";
         private void Form1_Load(object sender, EventArgs e)
         {
-            справочникиToolStripMenuItem.Visible = false;
+            //справочникиToolStripMenuItem.Visible = false;
             //экзаменToolStripMenuItem.Visible = false;
            // обучениеToolStripMenuItem.Visible = false;
            // тестированиеToolStripMenuItem.Visible = false;
             //комиссияToolStripMenuItem.Visible = false;
-            загрузкаToolStripMenuItem.Visible = false;
-            журналСтатистикиToolStripMenuItem.Visible = false;
+            //загрузкаToolStripMenuItem.Visible = false;
+            //журналСтатистикиToolStripMenuItem.Visible = false;
            // режимыToolStripMenuItem.Visible = false;
             
             this.IsMdiContainer = true; 

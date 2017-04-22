@@ -15,7 +15,11 @@ namespace Bezopasnost
         public Dolzhn()
         {
             InitializeComponent();
+            
+  
         }
+      
+       
         public int kursorVeaw = 0;
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
@@ -28,6 +32,7 @@ namespace Bezopasnost
 
         public void Dolzh()
         {
+            
             Form1 formGlavn = new Form1();
 
             SqlConnection conn = new SqlConnection(formGlavn.connect);
@@ -42,9 +47,15 @@ namespace Bezopasnost
             adapter.Fill(ds);
             conn.Close();
             dataGridView1.DataSource = ds.Tables[0];
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.ColumnHeadersVisible = false;
             dataGridView1.Columns[0].Visible = false;
             dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            for (int i = 0; i <= dataGridView1.Rows.Count; i++)
+            {
+                dataGridView1.Rows[i].Height = 35;
+            }
 
         }
 
@@ -83,6 +94,9 @@ namespace Bezopasnost
         private void Dolzhn_Load(object sender, EventArgs e)
         {
             
+            
         }
+
+    
     }
 }

@@ -44,6 +44,7 @@ namespace Bezopasnost
             dataGridView1.DataSource = ds.Tables[0];
             dataGridView1.Columns[0].Visible = false;
             dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView1.RowHeadersVisible = false;
 
         }
 
@@ -81,7 +82,7 @@ namespace Bezopasnost
 
         private void Dolzhn_Load(object sender, EventArgs e)
         {
-
+            
         }
     }
 }

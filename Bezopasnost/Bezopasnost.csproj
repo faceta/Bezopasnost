@@ -98,17 +98,41 @@
     <Compile Include="dobDolzhn.Designer.cs">
       <DependentUpon>dobDolzhn.cs</DependentUpon>
     </Compile>
+    <Compile Include="dobInstr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dobInstr.Designer.cs">
+      <DependentUpon>dobInstr.cs</DependentUpon>
+    </Compile>
     <Compile Include="dobKvalif.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="dobKvalif.Designer.cs">
       <DependentUpon>dobKvalif.cs</DependentUpon>
     </Compile>
+    <Compile Include="dobPudPunktics.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dobPudPunktics.Designer.cs">
+      <DependentUpon>dobPudPunktics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dopPodtem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dopPodtem.Designer.cs">
+      <DependentUpon>dopPodtem.cs</DependentUpon>
+    </Compile>
     <Compile Include="dobRabotn.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="dobRabotn.Designer.cs">
       <DependentUpon>dobRabotn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dobTemi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dobTemi.Designer.cs">
+      <DependentUpon>dobTemi.cs</DependentUpon>
     </Compile>
     <Compile Include="dobVidRabot.cs">
       <SubType>Form</SubType>
@@ -121,6 +145,13 @@
     </Compile>
     <Compile Include="Dolzhn.Designer.cs">
       <DependentUpon>Dolzhn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dopPodtemi.cs" />
+    <Compile Include="dopPunkti.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dopPunkti.Designer.cs">
+      <DependentUpon>dopPunkti.cs</DependentUpon>
     </Compile>
     <Compile Include="Ekzamen.cs">
       <SubType>Form</SubType>
@@ -187,6 +218,12 @@
     <Compile Include="Otpravk.Designer.cs">
       <DependentUpon>Otpravk.cs</DependentUpon>
     </Compile>
+    <Compile Include="PodPunkti.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PodPunkti.Designer.cs">
+      <DependentUpon>PodPunkti.cs</DependentUpon>
+    </Compile>
     <Compile Include="Podtemi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -218,17 +255,47 @@
     <Compile Include="redDolzhn.Designer.cs">
       <DependentUpon>redDolzhn.cs</DependentUpon>
     </Compile>
+    <Compile Include="redInstr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="redInstr.Designer.cs">
+      <DependentUpon>redInstr.cs</DependentUpon>
+    </Compile>
     <Compile Include="redKvalif.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="redKvalif.Designer.cs">
       <DependentUpon>redKvalif.cs</DependentUpon>
     </Compile>
+    <Compile Include="redPodPunkt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="redPodPunkt.Designer.cs">
+      <DependentUpon>redPodPunkt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="redPodTemi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="redPodTemi.Designer.cs">
+      <DependentUpon>redPodTemi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="redPunkti.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="redPunkti.Designer.cs">
+      <DependentUpon>redPunkti.cs</DependentUpon>
+    </Compile>
     <Compile Include="redRabotn.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="redRabotn.Designer.cs">
       <DependentUpon>redRabotn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="redTemi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="redTemi.Designer.cs">
+      <DependentUpon>redTemi.cs</DependentUpon>
     </Compile>
     <Compile Include="redVidRabot.cs">
       <SubType>Form</SubType>
@@ -296,17 +363,32 @@
     <EmbeddedResource Include="dobDolzhn.resx">
       <DependentUpon>dobDolzhn.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="dobInstr.resx">
+      <DependentUpon>dobInstr.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="dobKvalif.resx">
       <DependentUpon>dobKvalif.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="dobPudPunktics.resx">
+      <DependentUpon>dobPudPunktics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dopPodtem.resx">
+      <DependentUpon>dopPodtem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="dobRabotn.resx">
       <DependentUpon>dobRabotn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dobTemi.resx">
+      <DependentUpon>dobTemi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="dobVidRabot.resx">
       <DependentUpon>dobVidRabot.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dolzhn.resx">
       <DependentUpon>Dolzhn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dopPunkti.resx">
+      <DependentUpon>dopPunkti.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ekzamen.resx">
       <DependentUpon>Ekzamen.cs</DependentUpon>
@@ -338,6 +420,9 @@
     <EmbeddedResource Include="Otpravk.resx">
       <DependentUpon>Otpravk.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PodPunkti.resx">
+      <DependentUpon>PodPunkti.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Podtemi.resx">
       <DependentUpon>Podtemi.cs</DependentUpon>
     </EmbeddedResource>
@@ -355,11 +440,26 @@
     <EmbeddedResource Include="redDolzhn.resx">
       <DependentUpon>redDolzhn.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="redInstr.resx">
+      <DependentUpon>redInstr.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="redKvalif.resx">
       <DependentUpon>redKvalif.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="redPodPunkt.resx">
+      <DependentUpon>redPodPunkt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="redPodTemi.resx">
+      <DependentUpon>redPodTemi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="redPunkti.resx">
+      <DependentUpon>redPunkti.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="redRabotn.resx">
       <DependentUpon>redRabotn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="redTemi.resx">
+      <DependentUpon>redTemi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="redVidRabot.resx">
       <DependentUpon>redVidRabot.cs</DependentUpon>

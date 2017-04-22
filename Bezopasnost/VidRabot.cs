@@ -66,8 +66,8 @@ namespace Bezopasnost
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             int nomStr = dataGridView1.CurrentCell.RowIndex;
-            Dannie.Value = dataGridView1.Rows[nomStr].Cells[1].Value.ToString();
-            Dannie.Id = dataGridView1.Rows[nomStr].Cells[0].Value.ToString();
+            Dannie.VidRab = dataGridView1.Rows[nomStr].Cells[1].Value.ToString();
+            Dannie.KodVid = Convert.ToInt32(dataGridView1.Rows[nomStr].Cells[0].Value.ToString());
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -36,7 +36,7 @@ namespace Bezopasnost
                 SqlConnection conn = new SqlConnection(f1.connect);
                 SqlCommand cmd;
                 conn.Open();
-                cmd = new SqlCommand("DELETE FROM Dolzhnost WHERE kod_d=" + "'" + Dannie.Id + "'", conn);
+                cmd = new SqlCommand("DELETE FROM Dolzhnost WHERE kod_d = " + "'" + Dannie.Id + "'", conn);
                 cmd.ExecuteNonQuery();
                 conn.Close();
             }
@@ -46,7 +46,7 @@ namespace Bezopasnost
                 SqlConnection conn = new SqlConnection(f1.connect);
                 SqlCommand cmd;
                 conn.Open();
-                cmd = new SqlCommand("DELETE FROM Grup_bez WHERE kod_kv=" + "'" + Dannie.Id + "'", conn);
+                cmd = new SqlCommand("DELETE FROM Grup_bez WHERE kod_kv = " + "'" + Dannie.Id + "'", conn);
                 cmd.ExecuteNonQuery();
                 conn.Close();
             }
@@ -56,7 +56,7 @@ namespace Bezopasnost
                 SqlConnection conn = new SqlConnection(f1.connect);
                 SqlCommand cmd;
                 conn.Open();
-                cmd = new SqlCommand("DELETE FROM Vidi_rabot WHERE kod_v=" + "'" + Dannie.Id + "'", conn);
+                cmd = new SqlCommand("DELETE FROM Vidi_rabot WHERE KodVid = " + "'" + Dannie.Id + "'", conn);
                 cmd.ExecuteNonQuery();
                 conn.Close();
             }
@@ -66,7 +66,47 @@ namespace Bezopasnost
                 SqlConnection conn = new SqlConnection(f1.connect);
                 SqlCommand cmd;
                 conn.Open();
-                cmd = new SqlCommand("DELETE FROM Rabotni WHERE kod_r=" + "'" + Dannie.KodR + "'", conn);
+                cmd = new SqlCommand("DELETE FROM Rabotni WHERE kod_r = " + "'" + Dannie.KodR + "'", conn);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            if (Dannie.Ud == "5")
+            {
+                Form1 f1 = new Form1();
+                SqlConnection conn = new SqlConnection(f1.connect);
+                SqlCommand cmd;
+                conn.Open();
+                cmd = new SqlCommand("DELETE FROM Instrukcii WHERE kod_inst = " + "'" + Dannie.KodInst + "'", conn);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            if (Dannie.Ud == "6")
+            {
+                Form1 f1 = new Form1();
+                SqlConnection conn = new SqlConnection(f1.connect);
+                SqlCommand cmd;
+                conn.Open();
+                cmd = new SqlCommand("DELETE FROM Temi WHERE kod_tm = " + "'" + Dannie.KodTem + "'", conn);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            if (Dannie.Ud == "7")
+            {
+                Form1 f1 = new Form1();
+                SqlConnection conn = new SqlConnection(f1.connect);
+                SqlCommand cmd;
+                conn.Open();
+                cmd = new SqlCommand("DELETE FROM Podtemi WHERE kod_ptm = " + "'" + Dannie.KodPodTem + "'", conn);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            if (Dannie.Ud == "8")
+            {
+                Form1 f1 = new Form1();
+                SqlConnection conn = new SqlConnection(f1.connect);
+                SqlCommand cmd;
+                conn.Open();
+                cmd = new SqlCommand("DELETE FROM Punkti WHERE kod_p = " + "'" + Dannie.KodPunkt + "'", conn);
                 cmd.ExecuteNonQuery();
                 conn.Close();
             }

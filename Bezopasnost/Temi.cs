@@ -25,7 +25,7 @@ namespace Bezopasnost
                "SELECT kod_tm," +
                   "tema AS 'Тема' " +
                "FROM Temi " +
-               "WHERE kod_inst = " + Dannie.Instr;
+               "WHERE kod_inst = " + Dannie.KodInst;
             ;
             SqlDataAdapter adapter = new SqlDataAdapter(q, conn);
             DataSet ds = new DataSet();
@@ -54,6 +54,35 @@ namespace Bezopasnost
         private void Temi_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            dobTemi formDobTemi = new dobTemi();
+            formDobTemi.MdiParent = this.MdiParent;
+            formDobTemi.Show();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            redTemi formRedTemi = new redTemi();
+            formRedTemi.MdiParent = this.MdiParent;
+            formRedTemi.Show();
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            int nomStr = dataGridView1.CurrentCell.RowIndex;
+            Dannie.Tem = dataGridView1.Rows[nomStr].Cells[1].Value.ToString();
+            Dannie.KodTem = Convert.ToInt32(dataGridView1.Rows[nomStr].Cells[0].Value.ToString());
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            ud u = new ud();
+            u.MdiParent = this.MdiParent;
+            Dannie.Ud = "6";
+            u.Show();
         }
     }
 }

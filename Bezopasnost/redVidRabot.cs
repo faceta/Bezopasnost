@@ -15,7 +15,7 @@ namespace Bezopasnost
         public redVidRabot()
         {
             InitializeComponent();
-            textBox1.Text = Dannie.Value;
+            textBox1.Text = Dannie.VidRab;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -33,7 +33,7 @@ namespace Bezopasnost
                 SqlCommand cmd;
                 sc.Open();
 
-                cmd = new SqlCommand("UPDATE Vidi_rabot SET vid_rabot=" + "'" + textBox1.Text + "'" + "Where kod_v=" + "'" + Dannie.Id + "'", sc);
+                cmd = new SqlCommand("UPDATE Vidi_rabot SET vid_rabot=" + "'" + textBox1.Text + "'" + "Where kod_v=" + "'" + Dannie.KodVid + "'", sc);
 
                 cmd.ExecuteNonQuery();
                 sc.Close();

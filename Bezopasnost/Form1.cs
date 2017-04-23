@@ -140,9 +140,22 @@ namespace Bezopasnost
 
         private void комиссияToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Komissiya ko = new Komissiya();
-            ko.MdiParent = this;
-            ko.Show();
+            Dannie.Komiss = 1;
+            Ekzam formEkzam = new Ekzam();
+            formEkzam.MdiParent = this;
+            formEkzam.Show();
+            //Komissiya ko = new Komissiya();
+            //ko.MdiParent = this;
+            //ko.Show();
+        }
+
+        private void экзаменToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Dannie.Komiss = 0;
+            Ekzam formEkzam = new Ekzam();
+            formEkzam.MdiParent = this;
+            formEkzam.Show();
+            
         }
 
     }

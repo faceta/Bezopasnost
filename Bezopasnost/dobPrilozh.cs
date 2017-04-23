@@ -10,11 +10,19 @@ using System.Data.SqlClient;
 
 namespace Bezopasnost
 {
-    public partial class dobPudPunktics : Form
+    public partial class dobPrilozh : Form
     {
-        public dobPudPunktics()
+        public dobPrilozh()
         {
             InitializeComponent();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Excel Documents|*.xls";
+            if (ofd.ShowDialog() == DialogResult.OK)
+                textBox1.Text = ofd.FileName;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -22,7 +30,7 @@ namespace Bezopasnost
             this.Close();
         }
 
-        private void dobPodPunkt()
+        private void dobPril()
         {
 
             if (textBox1.Text == "") MessageBox.Show("Заполните поле!");
@@ -32,7 +40,7 @@ namespace Bezopasnost
                 SqlConnection sc = new SqlConnection(formGlavn.connect);
                 SqlCommand cmd;
                 sc.Open();
-                cmd = new SqlCommand("INSERT INTO PodPunkti(podpunkti, soderzh, kod_p) VALUES ('" + textBox1.Text + "', '" + textBox2.Text + "', " + Dannie.KodPunkt + " )", sc);
+                cmd = new SqlCommand("INSERT INTO Prilozheniya(prilozh, kod_p) VALUES ('" + textBox1.Text + "', " + Dannie.KodPunkt + " )", sc);
                 cmd.ExecuteNonQuery();
                 sc.Close();
                 //Синхронизация с базой -------------------------------------------------
@@ -46,17 +54,7 @@ namespace Bezopasnost
 
         private void button1_Click(object sender, EventArgs e)
         {
-            dobPodPunkt();
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            dobPodPunkt();
-        }
-
-        private void button2_Click_1(object sender, EventArgs e)
-        {
-            this.Close();
+            dobPril();
         }
     }
 }

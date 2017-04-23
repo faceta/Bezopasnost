@@ -94,3 +94,9 @@ C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.PodPunkti.resour
 C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.redPodPunkt.resources
 C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.redPunkti.resources
 C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.Prilozh.resources
+C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.redPudPunktics.resources
+C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.dobPrilozh.resources
+C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.redPrilozh.resources
+C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.dobEkzam.resources
+C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.dobKom.resources
+C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.Ekzam.resources

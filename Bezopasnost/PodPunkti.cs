@@ -49,19 +49,42 @@ namespace Bezopasnost
 
         private void PodPunkti_Load(object sender, EventArgs e)
         {
-          
+            PodPunk();
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            PodPunkti formPodPunkti = new PodPunkti();
-            formPodPunkti.MdiParent = this.MdiParent;
-            formPodPunkti.Show();
+            dobPudPunktics formDobPudPunktics = new dobPudPunktics();
+            formDobPudPunktics.MdiParent = this.MdiParent;
+            formDobPudPunktics.Show();
         }
 
         private void PodPunkti_Activated(object sender, EventArgs e)
         {
             PodPunk();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            redPudPunktics formRedPudPunktics = new redPudPunktics();
+            formRedPudPunktics.MdiParent = this.MdiParent;
+            formRedPudPunktics.Show();
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            int nomStr = dataGridView1.CurrentCell.RowIndex;
+            Dannie.PodPunkt = dataGridView1.Rows[nomStr].Cells[1].Value.ToString();
+            Dannie.SoderzhPP = dataGridView1.Rows[nomStr].Cells[2].Value.ToString();
+            Dannie.KodPodPunkt = Convert.ToInt32(dataGridView1.Rows[nomStr].Cells[0].Value.ToString());
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            ud u = new ud();
+            u.MdiParent = this.MdiParent;
+            Dannie.Ud = "9";
+            u.Show();
         }
     }
 }

@@ -48,12 +48,41 @@ namespace Bezopasnost
 
         private void Prilozh_Load(object sender, EventArgs e)
         {
-           
+            Prilo();
         }
 
         private void Prilozh_Activated(object sender, EventArgs e)
         {
             Prilo();
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            dobPrilozh formDobPrilozh = new dobPrilozh();
+            formDobPrilozh.MdiParent = this.MdiParent;
+            formDobPrilozh.Show();
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            int nomStr = dataGridView1.CurrentCell.RowIndex;
+            Dannie.Prilog = dataGridView1.Rows[nomStr].Cells[1].Value.ToString();
+            Dannie.KodPrilog = Convert.ToInt32(dataGridView1.Rows[nomStr].Cells[0].Value.ToString());
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            redPrilozh formRedPrilozh = new redPrilozh();
+            formRedPrilozh.MdiParent = this.MdiParent;
+            formRedPrilozh.Show();
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            ud u = new ud();
+            u.MdiParent = this.MdiParent;
+            Dannie.Ud = "10";
+            u.Show();
         }
     }
 }

@@ -98,17 +98,35 @@
     <Compile Include="dobDolzhn.Designer.cs">
       <DependentUpon>dobDolzhn.cs</DependentUpon>
     </Compile>
+    <Compile Include="dobEkzam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dobEkzam.Designer.cs">
+      <DependentUpon>dobEkzam.cs</DependentUpon>
+    </Compile>
     <Compile Include="dobInstr.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="dobInstr.Designer.cs">
       <DependentUpon>dobInstr.cs</DependentUpon>
     </Compile>
+    <Compile Include="dobKom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dobKom.Designer.cs">
+      <DependentUpon>dobKom.cs</DependentUpon>
+    </Compile>
     <Compile Include="dobKvalif.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="dobKvalif.Designer.cs">
       <DependentUpon>dobKvalif.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dobPrilozh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dobPrilozh.Designer.cs">
+      <DependentUpon>dobPrilozh.cs</DependentUpon>
     </Compile>
     <Compile Include="dobPudPunktics.cs">
       <SubType>Form</SubType>
@@ -152,6 +170,12 @@
     </Compile>
     <Compile Include="dopPunkti.Designer.cs">
       <DependentUpon>dopPunkti.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ekzam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ekzam.Designer.cs">
+      <DependentUpon>Ekzam.cs</DependentUpon>
     </Compile>
     <Compile Include="Ekzamen.cs">
       <SubType>Form</SubType>
@@ -285,6 +309,18 @@
     <Compile Include="redPodTemi.Designer.cs">
       <DependentUpon>redPodTemi.cs</DependentUpon>
     </Compile>
+    <Compile Include="redPrilozh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="redPrilozh.Designer.cs">
+      <DependentUpon>redPrilozh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="redPudPunktics.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="redPudPunktics.Designer.cs">
+      <DependentUpon>redPudPunktics.cs</DependentUpon>
+    </Compile>
     <Compile Include="redPunkti.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -369,11 +405,20 @@
     <EmbeddedResource Include="dobDolzhn.resx">
       <DependentUpon>dobDolzhn.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="dobEkzam.resx">
+      <DependentUpon>dobEkzam.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="dobInstr.resx">
       <DependentUpon>dobInstr.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="dobKom.resx">
+      <DependentUpon>dobKom.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="dobKvalif.resx">
       <DependentUpon>dobKvalif.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dobPrilozh.resx">
+      <DependentUpon>dobPrilozh.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="dobPudPunktics.resx">
       <DependentUpon>dobPudPunktics.cs</DependentUpon>
@@ -395,6 +440,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="dopPunkti.resx">
       <DependentUpon>dopPunkti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ekzam.resx">
+      <DependentUpon>Ekzam.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ekzamen.resx">
       <DependentUpon>Ekzamen.cs</DependentUpon>
@@ -460,6 +508,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="redPodTemi.resx">
       <DependentUpon>redPodTemi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="redPrilozh.resx">
+      <DependentUpon>redPrilozh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="redPudPunktics.resx">
+      <DependentUpon>redPudPunktics.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="redPunkti.resx">
       <DependentUpon>redPunkti.cs</DependentUpon>

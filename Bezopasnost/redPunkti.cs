@@ -34,7 +34,7 @@ namespace Bezopasnost
                 SqlCommand cmd;
                 sc.Open();
 
-                cmd = new SqlCommand("UPDATE Temi SET punkt = " + "'" + textBox1.Text + "', soderzh = '" + textBox2.Text + "'" + " Where kod_p = " + "'" + Dannie.KodPunkt + "'", sc);
+                cmd = new SqlCommand("UPDATE Punkti SET punkt = " + "'" + textBox1.Text + "', soderzh = '" + textBox2.Text + "'" + " Where kod_p = " + "'" + Dannie.KodPunkt + "'", sc);
 
                 cmd.ExecuteNonQuery();
                 sc.Close();

@@ -10,29 +10,27 @@ using System.Data.SqlClient;
 
 namespace Bezopasnost
 {
-    public partial class dobPudPunktics : Form
+    public partial class redPudPunktics : Form
     {
-        public dobPudPunktics()
+        public redPudPunktics()
         {
             InitializeComponent();
+            textBox1.Text = Dannie.Punkt;
+            textBox2.Text = Dannie.SoderzhPP;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void redPodPunkt()
         {
-            this.Close();
-        }
-
-        private void dobPodPunkt()
-        {
-
             if (textBox1.Text == "") MessageBox.Show("Заполните поле!");
             else
             {
-                Form1 formGlavn = new Form1();
-                SqlConnection sc = new SqlConnection(formGlavn.connect);
+                Form1 f1 = new Form1();
+                SqlConnection sc = new SqlConnection(f1.connect);
                 SqlCommand cmd;
                 sc.Open();
-                cmd = new SqlCommand("INSERT INTO PodPunkti(podpunkti, soderzh, kod_p) VALUES ('" + textBox1.Text + "', '" + textBox2.Text + "', " + Dannie.KodPunkt + " )", sc);
+
+                cmd = new SqlCommand("UPDATE PodPunkti SET podpunkti = " + "'" + textBox1.Text + "', soderzh = '" + textBox2.Text + "'" + " Where kod_pp = " + "'" + Dannie.KodPodPunkt + "'", sc);
+
                 cmd.ExecuteNonQuery();
                 sc.Close();
                 //Синхронизация с базой -------------------------------------------------
@@ -44,17 +42,17 @@ namespace Bezopasnost
             }
         }
 
+        private void redPudPunktics_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            dobPodPunkt();
+            redPodPunkt();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            dobPodPunkt();
-        }
-
-        private void button2_Click_1(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
         }

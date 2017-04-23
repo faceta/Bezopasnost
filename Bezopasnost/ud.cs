@@ -110,6 +110,26 @@ namespace Bezopasnost
                 cmd.ExecuteNonQuery();
                 conn.Close();
             }
+            if (Dannie.Ud == "9")
+            {
+                Form1 f1 = new Form1();
+                SqlConnection conn = new SqlConnection(f1.connect);
+                SqlCommand cmd;
+                conn.Open();
+                cmd = new SqlCommand("DELETE FROM PodPunkti WHERE kod_pp = " + "'" + Dannie.KodPodPunkt + "'", conn);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            if (Dannie.Ud == "10")
+            {
+                Form1 f1 = new Form1();
+                SqlConnection conn = new SqlConnection(f1.connect);
+                SqlCommand cmd;
+                conn.Open();
+                cmd = new SqlCommand("DELETE FROM Prilozheniya WHERE kod_pr = " + "'" + Dannie.KodPrilog + "'", conn);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
             this.Close();
         }
 

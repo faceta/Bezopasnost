@@ -15,7 +15,7 @@ namespace Bezopasnost
         public redInstr()
         {
             InitializeComponent();
-            textBox1.Text = Dannie.Value;
+            textBox1.Text = Dannie.Instr;
         }
 
         private void redIns()

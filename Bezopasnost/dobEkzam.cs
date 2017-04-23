@@ -10,29 +10,27 @@ using System.Data.SqlClient;
 
 namespace Bezopasnost
 {
-    public partial class dobPudPunktics : Form
+    public partial class dobEkzam : Form
     {
-        public dobPudPunktics()
+        public dobEkzam()
         {
             InitializeComponent();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
-
-        private void dobPodPunkt()
+       
+        private void dobEk()
         {
 
-            if (textBox1.Text == "") MessageBox.Show("Заполните поле!");
-            else
-            {
+            
                 Form1 formGlavn = new Form1();
                 SqlConnection sc = new SqlConnection(formGlavn.connect);
                 SqlCommand cmd;
                 sc.Open();
-                cmd = new SqlCommand("INSERT INTO PodPunkti(podpunkti, soderzh, kod_p) VALUES ('" + textBox1.Text + "', '" + textBox2.Text + "', " + Dannie.KodPunkt + " )", sc);
+                cmd = new SqlCommand("INSERT INTO Ekzamen(data) VALUES ('" + dateTimePicker1.Value.Date + "'" + " )", sc);
                 cmd.ExecuteNonQuery();
                 sc.Close();
                 //Синхронизация с базой -------------------------------------------------
@@ -41,22 +39,12 @@ namespace Bezopasnost
                 //-----------------------------------------------------------------------
                 this.Close();
 
-            }
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            dobPodPunkt();
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            dobPodPunkt();
-        }
-
-        private void button2_Click_1(object sender, EventArgs e)
-        {
-            this.Close();
+            dobEk();
         }
     }
 }

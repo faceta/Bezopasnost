@@ -46,6 +46,7 @@
             this.загрузкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
+            this.экзаменToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,7 +74,8 @@
             this.должностиToolStripMenuItem,
             this.группыБезопасностиToolStripMenuItem,
             this.видыРаботToolStripMenuItem,
-            this.членыКомиссииToolStripMenuItem});
+            this.членыКомиссииToolStripMenuItem,
+            this.экзаменToolStripMenuItem1});
             this.справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
             this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
             this.справочникиToolStripMenuItem.Text = "Справочники";
@@ -126,21 +128,21 @@
             // обучениеToolStripMenuItem
             // 
             this.обучениеToolStripMenuItem.Name = "обучениеToolStripMenuItem";
-            this.обучениеToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.обучениеToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.обучениеToolStripMenuItem.Text = "Обучение";
             this.обучениеToolStripMenuItem.Click += new System.EventHandler(this.обучениеToolStripMenuItem_Click);
             // 
             // тестированиеToolStripMenuItem
             // 
             this.тестированиеToolStripMenuItem.Name = "тестированиеToolStripMenuItem";
-            this.тестированиеToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.тестированиеToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.тестированиеToolStripMenuItem.Text = "Тестирование";
             this.тестированиеToolStripMenuItem.Click += new System.EventHandler(this.тестированиеToolStripMenuItem_Click);
             // 
             // экзаменToolStripMenuItem
             // 
             this.экзаменToolStripMenuItem.Name = "экзаменToolStripMenuItem";
-            this.экзаменToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.экзаменToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.экзаменToolStripMenuItem.Text = "Экзамен";
             this.экзаменToolStripMenuItem.Click += new System.EventHandler(this.экзаменToolStripMenuItem_Click);
             // 
@@ -188,6 +190,13 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "label1";
             // 
+            // экзаменToolStripMenuItem1
+            // 
+            this.экзаменToolStripMenuItem1.Name = "экзаменToolStripMenuItem1";
+            this.экзаменToolStripMenuItem1.Size = new System.Drawing.Size(195, 22);
+            this.экзаменToolStripMenuItem1.Text = "Экзамен";
+            this.экзаменToolStripMenuItem1.Click += new System.EventHandler(this.экзаменToolStripMenuItem1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
@@ -231,6 +240,7 @@
         private System.Windows.Forms.ToolStripMenuItem тестированиеToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem уведомленияToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem экзаменToolStripMenuItem1;
 
 
 

@@ -33,9 +33,14 @@ namespace Bezopasnost
 
         public static int KodPodPunkt { get; set; }
         public static string PodPunkt { get; set; }
+        public static string SoderzhPP { get; set; }
 
         public static int KodPrilog { get; set; }
         public static string Prilog { get; set; }
         //-------------------------------------------------------------------------------------------------------------
+        public static int KodEk { get; set; }
+        public static string DataEk { get; set; }
+        public static int Komiss { get; set; }
+
     }
 }

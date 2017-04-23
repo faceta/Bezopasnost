@@ -10,29 +10,26 @@ using System.Data.SqlClient;
 
 namespace Bezopasnost
 {
-    public partial class dobPudPunktics : Form
+    public partial class redPrilozh : Form
     {
-        public dobPudPunktics()
+        public redPrilozh()
         {
             InitializeComponent();
+            textBox1.Text = Dannie.Prilog;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void redPril()
         {
-            this.Close();
-        }
-
-        private void dobPodPunkt()
-        {
-
             if (textBox1.Text == "") MessageBox.Show("Заполните поле!");
             else
             {
-                Form1 formGlavn = new Form1();
-                SqlConnection sc = new SqlConnection(formGlavn.connect);
+                Form1 f1 = new Form1();
+                SqlConnection sc = new SqlConnection(f1.connect);
                 SqlCommand cmd;
                 sc.Open();
-                cmd = new SqlCommand("INSERT INTO PodPunkti(podpunkti, soderzh, kod_p) VALUES ('" + textBox1.Text + "', '" + textBox2.Text + "', " + Dannie.KodPunkt + " )", sc);
+
+                cmd = new SqlCommand("UPDATE Prilozheniya SET prilozh = " + "'" + textBox1.Text + "'" + " Where kod_pr=" + "'" + Dannie.KodPrilog + "'", sc);
+
                 cmd.ExecuteNonQuery();
                 sc.Close();
                 //Синхронизация с базой -------------------------------------------------
@@ -44,17 +41,25 @@ namespace Bezopasnost
             }
         }
 
+        private void redPrilozh_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            dobPodPunkt();
+            redPril();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
-            dobPodPunkt();
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Excel Documents|*.xls";
+            if (ofd.ShowDialog() == DialogResult.OK)
+                textBox1.Text = ofd.FileName;
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
         }

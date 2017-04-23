@@ -33,8 +33,15 @@ namespace Bezopasnost
             adapter.Fill(ds);
             conn.Close();
             dataGridView1.DataSource = ds.Tables[0];
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.ColumnHeadersVisible = false;
             dataGridView1.Columns[0].Visible = false;
             dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            for (int i = 0; i <= dataGridView1.Rows.Count; i++)
+            {
+                dataGridView1.Rows[i].Height = 35;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

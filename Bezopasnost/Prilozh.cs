@@ -10,23 +10,22 @@ using System.Data.SqlClient;
 
 namespace Bezopasnost
 {
-    public partial class ChleniKomis : Form
+    public partial class Prilozh : Form
     {
-        public ChleniKomis()
+        public Prilozh()
         {
             InitializeComponent();
         }
 
-        public void Chlini_Kom() {
+        public void Prilo()
+        {
             Form1 formGlavn = new Form1();
             SqlConnection conn = new SqlConnection(formGlavn.connect);
             string q =
-               "SELECT kod_k," +
-                  "fio AS 'ФИО' " +
-                  ", organizaciya AS 'Организация' " +
-                  ", otdel AS 'Отдел' " +
-                  ", dolzhnost AS 'Должность' " +
-               "FROM Chleni_komissii "
+               " SELECT kod_pr " +
+                  " ,prilozh AS 'Ссылка на приожение' " +
+               " FROM Prilozheniya " +
+               " WHERE kod_p = " + Dannie.KodPunkt;
             ;
             SqlDataAdapter adapter = new SqlDataAdapter(q, conn);
             DataSet ds = new DataSet();
@@ -34,11 +33,10 @@ namespace Bezopasnost
             adapter.Fill(ds);
             conn.Close();
             dataGridView1.DataSource = ds.Tables[0];
-            dataGridView1.Columns[1].Width = 250;
             dataGridView1.RowHeadersVisible = false;
-            //dataGridView1.ColumnHeadersVisible = false;
+            dataGridView1.ColumnHeadersVisible = false;
             dataGridView1.Columns[0].Visible = false;
-            dataGridView1.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
@@ -48,14 +46,14 @@ namespace Bezopasnost
             }
         }
 
-        private void ChleniKomis_Activated(object sender, EventArgs e)
+        private void Prilozh_Load(object sender, EventArgs e)
         {
-            Chlini_Kom();
+           
         }
 
-        private void ChleniKomis_Load(object sender, EventArgs e)
+        private void Prilozh_Activated(object sender, EventArgs e)
         {
-            Chlini_Kom();
+            Prilo();
         }
     }
 }

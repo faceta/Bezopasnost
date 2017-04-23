@@ -17,7 +17,7 @@ namespace Bezopasnost
             InitializeComponent();
         }
 
-        public int schetchik, schetchik2;
+        public int schetchik, schetchik2, schetchik3;
 
         
         public void testik()
@@ -79,41 +79,46 @@ namespace Bezopasnost
             //dataGridView3.Columns[1].Visible = false;
             //dataGridView3.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             int kol1 = 1;
-            checkBox1.Visible = false;
-            checkBox2.Visible = false;
-            checkBox3.Visible = false;
-            checkBox4.Visible = false;
-            checkBox5.Visible = false;
+            button3.Enabled = false;
+            button4.Enabled = false;
+            button5.Enabled = false;
+            button6.Enabled = false;
+            button7.Enabled = false;
+            button3.Text = "";
+            button4.Text = "";
+            button5.Text = "";
+            button6.Text = "";
+            button7.Text = "";
             //kol1 = dataGridView3.Rows.Count;
             //textBox2.Text = dataGridView3.Rows.Count.ToString();
             if (dataGridView3.Rows.Count >= kol1)
             {
-                checkBox1.Text = dataGridView3.Rows[0].Cells[0].Value.ToString();
+                button3.Text = dataGridView3.Rows[0].Cells[0].Value.ToString();
                 kol1 += 1;
-                checkBox1.Visible = true;
+                button3.Enabled = true;
 
                 if (dataGridView3.Rows.Count >= kol1)
                 {
-                    checkBox2.Text = dataGridView3.Rows[1].Cells[0].Value.ToString();
+                    button4.Text = dataGridView3.Rows[1].Cells[0].Value.ToString();
                     kol1 += 1;
-                    checkBox2.Visible = true;
+                    button4.Enabled = true;
 
                     if (dataGridView3.Rows.Count >= kol1)
                     {
-                        checkBox3.Text = dataGridView3.Rows[2].Cells[0].Value.ToString();
+                        button5.Text = dataGridView3.Rows[2].Cells[0].Value.ToString();
                         kol1 += 1;
-                        checkBox3.Visible = true;
+                        button5.Enabled = true;
 
                         if (dataGridView3.Rows.Count >= kol1)
                         {
-                            checkBox4.Text = dataGridView3.Rows[3].Cells[0].Value.ToString();
+                            button6.Text = dataGridView3.Rows[3].Cells[0].Value.ToString();
                             kol1 += 1;
-                            checkBox4.Visible = true;
+                            button6.Enabled = true;
 
                             if (dataGridView3.Rows.Count >= kol1)
                             {
-                                checkBox5.Text = dataGridView3.Rows[4].Cells[0].Value.ToString();
-                                checkBox5.Visible = true;
+                                button7.Text = dataGridView3.Rows[4].Cells[0].Value.ToString();
+                                button7.Enabled = true;
                             }
                         }
                     }
@@ -125,6 +130,7 @@ namespace Bezopasnost
             testik();
             schetchik = 0;
             schetchik2 = 0;
+            schetchik3 = 0;
             button2.Visible = false;
            
 
@@ -138,22 +144,47 @@ namespace Bezopasnost
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //button1.Text = "Далее >> ";
-            textBox1.Text = dataGridView1.Rows[schetchik].Cells[0].Value.ToString();
-            //textBox2.Text = schetchik.ToString();
-            schetchik += 1;
-            if (dataGridView1.Rows.Count == schetchik) {
-                button1.Visible = false; 
-                button2.Visible = true;
+            if (dataGridView1.Rows.Count == schetchik)
+            {
+                schetchik2 += 1;
+                if (dataGridView2.Rows.Count - 1 == schetchik2)
+                {
+                    //button1.Visible = false;
+                    //button2.Visible = true;
+                    //button2.Text = "Завершить";
+                    button1.Enabled = false;
+
+                    textBox1.Text = "Вы прошли тест на столько-то процентов. Если меньше 90% рекомендуется повторить материал.";
+
+                }
+                else
+                {
+                    testik();
+                    schetchik = 0;
+                    // button1.Visible = true;
+                    // button2.Visible = false;
+                }
             }
-            testik2();
+            else
+            {
+                button1.Text = "Далее >> ";
+                textBox1.Text = dataGridView1.Rows[schetchik].Cells[0].Value.ToString();
+                //textBox2.Text = schetchik.ToString();
+                schetchik += 1;
+
+
+
+                testik2();
+            }
+
+           
 
                 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
+            /*
 
             schetchik2 += 1;
             if (dataGridView2.Rows.Count - 1 == schetchik2)
@@ -173,6 +204,7 @@ namespace Bezopasnost
                 button1.Visible = true;
                 button2.Visible = false;
             }
+              */
 
 
         }
@@ -180,6 +212,36 @@ namespace Bezopasnost
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
           
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (button3.BackColor == SystemColors.Control) button3.BackColor = SystemColors.GradientInactiveCaption;
+            else button3.BackColor = SystemColors.Control;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (button4.BackColor == SystemColors.Control) button4.BackColor = SystemColors.GradientInactiveCaption;
+            else button4.BackColor = SystemColors.Control;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (button5.BackColor == SystemColors.Control) button5.BackColor = SystemColors.GradientInactiveCaption;
+            else button5.BackColor = SystemColors.Control;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (button6.BackColor == SystemColors.Control) button6.BackColor = SystemColors.GradientInactiveCaption;
+            else button6.BackColor = SystemColors.Control;
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (button7.BackColor == SystemColors.Control) button7.BackColor = SystemColors.GradientInactiveCaption;
+            else button7.BackColor = SystemColors.Control;
         }
     }
 }

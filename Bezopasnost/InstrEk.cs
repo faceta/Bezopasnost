@@ -45,9 +45,10 @@ namespace Bezopasnost
         private void button1_Click(object sender, EventArgs e)
         {
             Dannie.KodInst = Convert.ToInt32(comboBox1.SelectedValue.ToString());
-
+            
             Ekzamen ek = new Ekzamen();
             ek.Show();
+            this.Close();
         }
     }
 }

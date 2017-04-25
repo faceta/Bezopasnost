@@ -17,20 +17,32 @@ namespace Bezopasnost
             InitializeComponent();
         }
 
-        public int schetchik, schetchik2;
+        public int schetchik, schetchik2, schetchik3, kolPO = 0, schP = 0, schN = 0, kolP = 0, kolN = 0, vop = 0;
+        public int itog;
+        public int[] k = { 0, 0, 0, 0, 0 };
 
 
         public void testik()
         {
             Form1 formGlavn = new Form1();
             SqlConnection conn = new SqlConnection(formGlavn.connect);
-
             string sql =
+            " SELECT tem.kod_tm " +
+            "     , tema " +
+            "     , COUNT(vopros) " +
+            " FROM Temi tem " +
+            " LEFT JOIN Podtemi pt ON pt.kod_tm = tem.kod_tm " +
+            " LEFT JOIN Punkti pun ON (tem.kod_tm = pun.kod_tm OR pun.kod_ptm = pt.kod_ptm) " +
+            " LEFT JOIN Voprosi vop ON pun.kod_p = vop.kod_p " +
+            " WHERE kod_inst = " + Dannie.KodInst +
+            " GROUP BY tem.kod_tm, tema "
+            ;
+            /*string sql =
                " SELECT kod_tm " +
                   " , tema " +
                " FROM Temi " +
                " Where kod_inst = " + Dannie.KodInst
-            ;
+            ;*/
 
             SqlDataAdapter adapter = new SqlDataAdapter(sql, conn);
             DataSet ds = new DataSet();
@@ -38,14 +50,35 @@ namespace Bezopasnost
             adapter.Fill(ds);
             conn.Close();
             dataGridView2.DataSource = ds.Tables[0];
-            dataGridView2.Columns[0].Visible = false;
-            dataGridView2.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+
+            string qN =
+               "SELECT kol_vop," +
+                  "kol_dop " +
+               "FROM Nastrojki "
+            ;
+            SqlDataAdapter adapterN = new SqlDataAdapter(qN, conn);
+            DataSet dsN = new DataSet();
+            conn.Open();
+            adapterN.Fill(dsN);
+            conn.Close();
+            dataGridView4.DataSource = dsN.Tables[0];
+
+            //int prcV = Convert.ToInt32(dataGridView4.Rows[0].Cells[0].Value.ToString());
+            //int prcDV = Convert.ToInt32(dataGridView4.Rows[0].Cells[1].Value.ToString());
+            //int kV = Convert.ToInt32(dataGridView2.Rows[schetchik2 - 1].Cells[2].Value.ToString());
 
             string sql2 =
-                " SELECT TOP 3 vopros, kod_vop " +
-                " FROM Voprosi " +
-                " WHERE kod_tm = " + Convert.ToInt32(dataGridView2.Rows[schetchik2].Cells[0].Value.ToString()) +
-                " ORDER BY NEWID() "
+                " SELECT vopros, vop.kod_vop, COUNT(otvet), vop.kod_p  " +
+                " FROM Voprosi vop  " +
+                " LEFT JOIN Otveti ot ON vop.kod_vop = ot.kod_vop  " +
+                " LEFT JOIN Punkti pun ON pun.kod_p = vop.kod_p " +
+                " LEFT JOIN Podtemi pt ON pun.kod_ptm = pt.kod_ptm " +
+                " LEFT JOIN Temi tem ON (tem.kod_tm = pun.kod_tm OR pt.kod_tm = tem.kod_tm)   " +
+                " WHERE vop.ek = 'True'" +
+                "     AND otmetka = 1  " +
+                " GROUP BY vopros, vop.kod_vop, vop.kod_p  " +
+                " ORDER BY NEWID()  "
             ;
 
             SqlDataAdapter adapter1 = new SqlDataAdapter(sql2, conn);
@@ -54,10 +87,6 @@ namespace Bezopasnost
             adapter1.Fill(ds1);
             conn.Close();
             dataGridView1.DataSource = ds1.Tables[0];
-            dataGridView1.Columns[1].Visible = false;
-            dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-
         }
         public void testik2()
         {
@@ -76,100 +105,267 @@ namespace Bezopasnost
             adapter3.Fill(ds3);
             conn.Close();
             dataGridView3.DataSource = ds3.Tables[0];
-            //dataGridView3.Columns[1].Visible = false;
-            //dataGridView3.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
             int kol1 = 1;
-            checkBox1.Visible = false;
-            checkBox2.Visible = false;
-            checkBox3.Visible = false;
-            checkBox4.Visible = false;
-            checkBox5.Visible = false;
-            //kol1 = dataGridView3.Rows.Count;
-            //textBox2.Text = dataGridView3.Rows.Count.ToString();
+            button3.Enabled = false;
+            button4.Enabled = false;
+            button5.Enabled = false;
+            button6.Enabled = false;
+            button7.Enabled = false;
+            button3.Text = "";
+            button4.Text = "";
+            button5.Text = "";
+            button6.Text = "";
+            button7.Text = "";
+
             if (dataGridView3.Rows.Count >= kol1)
             {
-                checkBox1.Text = dataGridView3.Rows[0].Cells[0].Value.ToString();
+                button3.Text = dataGridView3.Rows[0].Cells[0].Value.ToString();
                 kol1 += 1;
-                checkBox1.Visible = true;
+                button3.Enabled = true;
 
                 if (dataGridView3.Rows.Count >= kol1)
                 {
-                    checkBox2.Text = dataGridView3.Rows[1].Cells[0].Value.ToString();
+                    button4.Text = dataGridView3.Rows[1].Cells[0].Value.ToString();
                     kol1 += 1;
-                    checkBox2.Visible = true;
+                    button4.Enabled = true;
 
                     if (dataGridView3.Rows.Count >= kol1)
                     {
-                        checkBox3.Text = dataGridView3.Rows[2].Cells[0].Value.ToString();
+                        button5.Text = dataGridView3.Rows[2].Cells[0].Value.ToString();
                         kol1 += 1;
-                        checkBox3.Visible = true;
+                        button5.Enabled = true;
 
                         if (dataGridView3.Rows.Count >= kol1)
                         {
-                            checkBox4.Text = dataGridView3.Rows[3].Cells[0].Value.ToString();
+                            button6.Text = dataGridView3.Rows[3].Cells[0].Value.ToString();
                             kol1 += 1;
-                            checkBox4.Visible = true;
+                            button6.Enabled = true;
 
                             if (dataGridView3.Rows.Count >= kol1)
                             {
-                                checkBox5.Text = dataGridView3.Rows[4].Cells[0].Value.ToString();
-                                checkBox5.Visible = true;
+                                button7.Text = dataGridView3.Rows[4].Cells[0].Value.ToString();
+                                button7.Enabled = true;
                             }
                         }
                     }
                 }
             }
         }
-
         private void Ekzamen_Load(object sender, EventArgs e)
         {
             testik();
             schetchik = 0;
             schetchik2 = 0;
-            button2.Visible = false;
+            schetchik3 = 0;
+            button2.Enabled = false;
+
+
+
+
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //button1.Text = "Далее >> ";
-            textBox1.Text = dataGridView1.Rows[schetchik].Cells[0].Value.ToString();
-            //textBox2.Text = schetchik.ToString();
-            schetchik += 1;
-            if (dataGridView1.Rows.Count == schetchik)
-            {
-                button1.Visible = false;
-                button2.Visible = true;
-            }
-            testik2();
+            //button8.Visible = false;
+           // textBox2.Visible = false;
+            vop += 1;
+            schP = 0;
+            schN = 0;
 
+            button1.Enabled = false;
+            button2.Enabled = true;
+
+            //if (dataGridView1.Rows.Count == schetchik)
+            //{
+                schetchik2 += 1;
+                if (dataGridView2.Rows.Count == schetchik2)
+                {
+                    button1.Visible = false;
+                    button8.Visible = true;
+                    itog = (kolP * 100) / (kolP + kolN);
+                    textBox1.Text = "Вы прошли тест на " + itog.ToString() + "%. Если меньше 90% рекомендуется повторить материал.";
+                    button3.Enabled = false;
+                    button4.Enabled = false;
+                    button5.Enabled = false;
+                    button6.Enabled = false;
+                    button7.Enabled = false;
+                    button3.Text = "";
+                    button4.Text = "";
+                    button5.Text = "";
+                    button6.Text = "";
+                    button7.Text = "";
+                    button2.Enabled = false;
+                }
+                else
+                {
+                    //testik();
+                    //schetchik = 0;
+                    button1.Text = "Далее >> ";
+                    textBox1.Text = "Вопрос " + vop.ToString() + ". " + dataGridView1.Rows[schetchik].Cells[0].Value.ToString();
+                    schetchik += 1;
+                    //-------------------Загрузка ответов------------------
+                    testik2();
+                }
+           // }
+           // else
+           // {
+           //     button1.Text = "Далее >> ";
+           //     textBox1.Text = "Вопрос " + vop.ToString() + ". " + dataGridView1.Rows[schetchik].Cells[0].Value.ToString();
+           //     schetchik += 1;
+                //-------------------Загрузка ответов------------------
+          //      testik2();
+         //   }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            schetchik2 += 1;
-            if (dataGridView2.Rows.Count - 1 == schetchik2)
+            int l = 0, l1 = 0;
+
+            for (int i = 0; i < dataGridView3.Rows.Count; i++)
             {
-                button1.Visible = false;
-                button2.Visible = true;
-                //button2.Text = "Завершить";
-                button2.Enabled = false;
-
-                textBox1.Text = "Вы прошли тест на столько-то процентов. Если меньше 90% рекомендуется повторить материал.";
-
+                l = Convert.ToInt32(dataGridView3.Rows[i].Cells[2].Value.ToString());
+                l1 = k[i];
+                if (l == l1)
+                {
+                    schP += 1;
+                }
+                else
+                {
+                    schN += 1;
+                    //button8.Visible = true;
+                }
+            }
+            if (schN == 0)
+            {
+                kolP += 1;
+                textBox5.Text = kolP.ToString();
             }
             else
             {
-                testik();
-                schetchik = 0;
-                button1.Visible = true;
-                button2.Visible = false;
+                kolN += 1;
+                textBox6.Text = kolN.ToString();
             }
+            if (dataGridView2.Rows.Count == schetchik2)
+            {
+                button1.Enabled = false;
+                itog = (kolP * 100) / (kolP + kolN);
+            }
+            else button1.Enabled = true;
+            button3.BackColor = SystemColors.Control;
+            button4.BackColor = SystemColors.Control;
+            button5.BackColor = SystemColors.Control;
+            button6.BackColor = SystemColors.Control;
+            button7.BackColor = SystemColors.Control;
+            for (int j = 0; j <= 4; j++)
+            {
+                k[j] = 0;
+            }
+            button2.Enabled = false;
+            button3.Enabled = false;
+            button4.Enabled = false;
+            button5.Enabled = false;
+            button6.Enabled = false;
+            button7.Enabled = false;
+
 
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (button3.BackColor == SystemColors.Control)
+            {
+                button3.BackColor = SystemColors.GradientInactiveCaption;
+                k[0] = 1;
+            }
+            else
+            {
+                button3.BackColor = SystemColors.Control;
+                k[0] = 0;
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (button4.BackColor == SystemColors.Control)
+            {
+                button4.BackColor = SystemColors.GradientInactiveCaption;
+                k[1] = 1;
+            }
+            else
+            {
+                button4.BackColor = SystemColors.Control;
+                k[1] = 0;
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (button5.BackColor == SystemColors.Control)
+            {
+                button5.BackColor = SystemColors.GradientInactiveCaption;
+                k[2] = 1;
+            }
+            else
+            {
+                button5.BackColor = SystemColors.Control;
+                k[2] = 0;
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (button6.BackColor == SystemColors.Control)
+            {
+                button6.BackColor = SystemColors.GradientInactiveCaption;
+                k[3] = 1;
+            }
+            else
+            {
+                button6.BackColor = SystemColors.Control;
+                k[3] = 0;
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (button7.BackColor == SystemColors.Control)
+            {
+                button7.BackColor = SystemColors.GradientInactiveCaption;
+                k[4] = 1;
+            }
+            else
+            {
+                button7.BackColor = SystemColors.Control;
+                k[4] = 0;
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
         {
 
+          
+           
+            Form1 f1 = new Form1();
+            SqlConnection sc = new SqlConnection(f1.connect);
+            SqlCommand cmd;
+            sc.Open();
+
+            cmd = new SqlCommand("UPDATE Soderzhanie SET balli = " + itog + " Where kod_r=" + Dannie.KodRabot + " AND kod_ek = " + Dannie.KodEk, sc);
+
+            cmd.ExecuteNonQuery();
+            sc.Close();
+            //Синхронизация с базой -------------------------------------------------
+            LocalDataCache1SyncAgent syncAgent = new LocalDataCache1SyncAgent();
+            Microsoft.Synchronization.Data.SyncStatistics syncStats = syncAgent.Synchronize();
+            //-----------------------------------------------------------------------
+            this.Close();
+             
         }
+
+       
+       
     }
 }

@@ -78,10 +78,10 @@ namespace Bezopasnost
             dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            for (int i = 0; i <= dataGridView1.Rows.Count; i++)
-            {
-                dataGridView1.Rows[i].Height = 35;
-            }
+            //for (int i = 0; i <= dataGridView1.Rows.Count; i++)
+            //{
+            //    dataGridView1.Rows[i].Height = 35;
+            //}
         }
 
         private void Punkti_Load(object sender, EventArgs e)

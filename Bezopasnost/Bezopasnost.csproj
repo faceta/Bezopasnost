@@ -48,6 +48,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>33.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AxInterop.ShockwaveFlashObjects">
       <HintPath>bin\Debug\MyFlash\AxInterop.ShockwaveFlashObjects.dll</HintPath>
@@ -229,6 +232,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LocalDataCache1.sync</DependentUpon>
+    </Compile>
+    <Compile Include="Nastrojki.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Nastrojki.Designer.cs">
+      <DependentUpon>Nastrojki.cs</DependentUpon>
     </Compile>
     <Compile Include="Obuchenie.cs">
       <SubType>Form</SubType>
@@ -468,6 +477,9 @@
     <EmbeddedResource Include="Komissiya.resx">
       <DependentUpon>Komissiya.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Nastrojki.resx">
+      <DependentUpon>Nastrojki.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Obuchenie.resx">
       <DependentUpon>Obuchenie.cs</DependentUpon>
     </EmbeddedResource>
@@ -586,6 +598,7 @@
     <None Include="bin\Debug\img\favicon.ico" />
     <None Include="bin\Debug\img\strelka.png" />
     <None Include="bin\Debug\img\tree2.png" />
+    <Content Include="33.ico" />
     <Content Include="bezopasn.sdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

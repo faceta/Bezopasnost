@@ -59,10 +59,10 @@ namespace Bezopasnost
             dataGridView1.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            for (int i = 0; i <= dataGridView1.Rows.Count; i++)
-            {
-                dataGridView1.Rows[i].Height = 35;
-            }
+            //for (int i = 0; i <= dataGridView1.Rows.Count; i++)
+            //{
+            //    dataGridView1.Rows[i].Height = 35;
+            //}
             
         }
 

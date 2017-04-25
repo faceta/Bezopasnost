@@ -100,3 +100,4 @@ C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.redPrilozh.resou
 C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.dobEkzam.resources
 C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.dobKom.resources
 C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.Ekzam.resources
+C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.Nastrojki.resources

@@ -39,10 +39,10 @@ namespace Bezopasnost
             dataGridView1.Columns[0].Visible = false;
             dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            for (int i = 0; i <= dataGridView1.Rows.Count; i++)
-            {
-                dataGridView1.Rows[i].Height = 35;
-            }
+            //for (int i = 0; i <= dataGridView1.Rows.Count; i++)
+            //{
+            //    dataGridView1.Rows[i].Height = 35;
+            //}
 
         }
 

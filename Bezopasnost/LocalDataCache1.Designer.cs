@@ -56,11 +56,7 @@ namespace Bezopasnost {
         
         private SoderzhanieSyncTable _soderzhanieSyncTable;
         
-        private StetchikSyncTable _stetchikSyncTable;
-        
         private TemiSyncTable _temiSyncTable;
-        
-        private tmp_voprosiSyncTable _tmp_voprosiSyncTable;
         
         private Vidi_rabotSyncTable _vidi_rabotSyncTable;
         
@@ -267,18 +263,6 @@ namespace Bezopasnost {
         }
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public StetchikSyncTable Stetchik {
-            get {
-                return this._stetchikSyncTable;
-            }
-            set {
-                this.Configuration.SyncTables.Remove(this._stetchikSyncTable);
-                this._stetchikSyncTable = value;
-                this.Configuration.SyncTables.Add(this._stetchikSyncTable);
-            }
-        }
-        
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         public TemiSyncTable Temi {
             get {
                 return this._temiSyncTable;
@@ -287,18 +271,6 @@ namespace Bezopasnost {
                 this.Configuration.SyncTables.Remove(this._temiSyncTable);
                 this._temiSyncTable = value;
                 this.Configuration.SyncTables.Add(this._temiSyncTable);
-            }
-        }
-        
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public tmp_voprosiSyncTable tmp_voprosi {
-            get {
-                return this._tmp_voprosiSyncTable;
-            }
-            set {
-                this.Configuration.SyncTables.Remove(this._tmp_voprosiSyncTable);
-                this._tmp_voprosiSyncTable = value;
-                this.Configuration.SyncTables.Add(this._tmp_voprosiSyncTable);
             }
         }
         
@@ -384,15 +356,9 @@ namespace Bezopasnost {
             this._soderzhanieSyncTable = new SoderzhanieSyncTable();
             this._soderzhanieSyncTable.SyncGroup = new Microsoft.Synchronization.Data.SyncGroup("SoderzhanieSyncTableSyncGroup");
             this.Configuration.SyncTables.Add(this._soderzhanieSyncTable);
-            this._stetchikSyncTable = new StetchikSyncTable();
-            this._stetchikSyncTable.SyncGroup = new Microsoft.Synchronization.Data.SyncGroup("StetchikSyncTableSyncGroup");
-            this.Configuration.SyncTables.Add(this._stetchikSyncTable);
             this._temiSyncTable = new TemiSyncTable();
             this._temiSyncTable.SyncGroup = new Microsoft.Synchronization.Data.SyncGroup("TemiSyncTableSyncGroup");
             this.Configuration.SyncTables.Add(this._temiSyncTable);
-            this._tmp_voprosiSyncTable = new tmp_voprosiSyncTable();
-            this._tmp_voprosiSyncTable.SyncGroup = new Microsoft.Synchronization.Data.SyncGroup("tmp_voprosiSyncTableSyncGroup");
-            this.Configuration.SyncTables.Add(this._tmp_voprosiSyncTable);
             this._vidi_rabotSyncTable = new Vidi_rabotSyncTable();
             this._vidi_rabotSyncTable.SyncGroup = new Microsoft.Synchronization.Data.SyncGroup("Vidi_rabotSyncTableSyncGroup");
             this.Configuration.SyncTables.Add(this._vidi_rabotSyncTable);
@@ -657,22 +623,6 @@ namespace Bezopasnost {
             }
         }
         
-        public partial class StetchikSyncTable : Microsoft.Synchronization.Data.SyncTable {
-            
-            partial void OnInitialized();
-            
-            public StetchikSyncTable() {
-                this.InitializeTableOptions();
-                this.OnInitialized();
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            private void InitializeTableOptions() {
-                this.TableName = "Stetchik";
-                this.CreationOption = Microsoft.Synchronization.Data.TableCreationOption.DropExistingOrCreateNewTable;
-            }
-        }
-        
         public partial class TemiSyncTable : Microsoft.Synchronization.Data.SyncTable {
             
             partial void OnInitialized();
@@ -685,22 +635,6 @@ namespace Bezopasnost {
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
             private void InitializeTableOptions() {
                 this.TableName = "Temi";
-                this.CreationOption = Microsoft.Synchronization.Data.TableCreationOption.DropExistingOrCreateNewTable;
-            }
-        }
-        
-        public partial class tmp_voprosiSyncTable : Microsoft.Synchronization.Data.SyncTable {
-            
-            partial void OnInitialized();
-            
-            public tmp_voprosiSyncTable() {
-                this.InitializeTableOptions();
-                this.OnInitialized();
-            }
-            
-            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            private void InitializeTableOptions() {
-                this.TableName = "tmp$voprosi";
                 this.CreationOption = Microsoft.Synchronization.Data.TableCreationOption.DropExistingOrCreateNewTable;
             }
         }
@@ -1413,7 +1347,7 @@ namespace Bezopasnost {
             this.InsertCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_client_id_binary", System.Data.SqlDbType.VarBinary));
             this.InsertCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@kod_otv", System.Data.SqlDbType.Int));
             this.InsertCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@otvet", System.Data.SqlDbType.VarChar));
-            this.InsertCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@otmetka", System.Data.SqlDbType.Bit));
+            this.InsertCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@otmetka", System.Data.SqlDbType.Int));
             this.InsertCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@kod_vop", System.Data.SqlDbType.Int));
             System.Data.SqlClient.SqlParameter insertcommand_sync_row_countParameter = new System.Data.SqlClient.SqlParameter("@sync_row_count", System.Data.SqlDbType.Int);
             insertcommand_sync_row_countParameter.Direction = System.Data.ParameterDirection.Output;
@@ -1435,7 +1369,7 @@ namespace Bezopasnost {
             this.UpdateCommand.CommandText = @";WITH CHANGE_TRACKING_CONTEXT (@sync_client_id_binary) UPDATE dbo.Otveti SET [otvet] = @otvet, [otmetka] = @otmetka, [kod_vop] = @kod_vop FROM dbo.Otveti  JOIN CHANGETABLE(VERSION dbo.Otveti, ([kod_otv]), (@kod_otv)) CT  ON CT.[kod_otv] = dbo.Otveti.[kod_otv] WHERE (@sync_force_write = 1 OR CT.SYS_CHANGE_VERSION IS NULL OR CT.SYS_CHANGE_VERSION <= @sync_last_received_anchor OR (CT.SYS_CHANGE_CONTEXT IS NOT NULL AND CT.SYS_CHANGE_CONTEXT = @sync_client_id_binary)) SET @sync_row_count = @@rowcount; IF CHANGE_TRACKING_MIN_VALID_VERSION(object_id(N'dbo.Otveti')) > @sync_last_received_anchor RAISERROR (N'SQL Server Change Tracking has cleaned up tracking information for table ''%s''. To recover from this error, the client must reinitialize its local database and try again',16,3,N'dbo.Otveti') ";
             this.UpdateCommand.CommandType = System.Data.CommandType.Text;
             this.UpdateCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@otvet", System.Data.SqlDbType.VarChar));
-            this.UpdateCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@otmetka", System.Data.SqlDbType.Bit));
+            this.UpdateCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@otmetka", System.Data.SqlDbType.Int));
             this.UpdateCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@kod_vop", System.Data.SqlDbType.Int));
             this.UpdateCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@kod_otv", System.Data.SqlDbType.Int));
             this.UpdateCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_force_write", System.Data.SqlDbType.Bit));
@@ -2255,99 +2189,6 @@ namespace Bezopasnost {
         }
     }
     
-    public partial class StetchikSyncAdapter : Microsoft.Synchronization.Data.Server.SyncAdapter {
-        
-        partial void OnInitialized();
-        
-        public StetchikSyncAdapter() {
-            this.InitializeCommands();
-            this.InitializeAdapterProperties();
-            this.OnInitialized();
-        }
-        
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private void InitializeCommands() {
-            // StetchikSyncTableInsertCommand command.
-            this.InsertCommand = new System.Data.SqlClient.SqlCommand();
-            this.InsertCommand.CommandText = @";WITH CHANGE_TRACKING_CONTEXT (@sync_client_id_binary) INSERT INTO dbo.Stetchik ([kod_tm], [kol]) VALUES (@kod_tm, @kol) SET @sync_row_count = @@rowcount; IF CHANGE_TRACKING_MIN_VALID_VERSION(object_id(N'dbo.Stetchik')) > @sync_last_received_anchor RAISERROR (N'SQL Server Change Tracking has cleaned up tracking information for table ''%s''. To recover from this error, the client must reinitialize its local database and try again',16,3,N'dbo.Stetchik') ";
-            this.InsertCommand.CommandType = System.Data.CommandType.Text;
-            this.InsertCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_client_id_binary", System.Data.SqlDbType.VarBinary));
-            this.InsertCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@kod_tm", System.Data.SqlDbType.Int));
-            this.InsertCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@kol", System.Data.SqlDbType.Int));
-            System.Data.SqlClient.SqlParameter insertcommand_sync_row_countParameter = new System.Data.SqlClient.SqlParameter("@sync_row_count", System.Data.SqlDbType.Int);
-            insertcommand_sync_row_countParameter.Direction = System.Data.ParameterDirection.Output;
-            this.InsertCommand.Parameters.Add(insertcommand_sync_row_countParameter);
-            this.InsertCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_last_received_anchor", System.Data.SqlDbType.BigInt));
-            // StetchikSyncTableDeleteCommand command.
-            this.DeleteCommand = new System.Data.SqlClient.SqlCommand();
-            this.DeleteCommand.CommandText = @";WITH CHANGE_TRACKING_CONTEXT (@sync_client_id_binary) DELETE dbo.Stetchik FROM dbo.Stetchik JOIN CHANGETABLE(VERSION dbo.Stetchik, ([kod_tm]), (@kod_tm)) CT  ON CT.[kod_tm] = dbo.Stetchik.[kod_tm] WHERE (@sync_force_write = 1 OR CT.SYS_CHANGE_VERSION IS NULL OR CT.SYS_CHANGE_VERSION <= @sync_last_received_anchor OR (CT.SYS_CHANGE_CONTEXT IS NOT NULL AND CT.SYS_CHANGE_CONTEXT = @sync_client_id_binary)) SET @sync_row_count = @@rowcount; IF CHANGE_TRACKING_MIN_VALID_VERSION(object_id(N'dbo.Stetchik')) > @sync_last_received_anchor RAISERROR (N'SQL Server Change Tracking has cleaned up tracking information for table ''%s''. To recover from this error, the client must reinitialize its local database and try again',16,3,N'dbo.Stetchik') ";
-            this.DeleteCommand.CommandType = System.Data.CommandType.Text;
-            this.DeleteCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_client_id_binary", System.Data.SqlDbType.VarBinary));
-            this.DeleteCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@kod_tm", System.Data.SqlDbType.Int));
-            this.DeleteCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_force_write", System.Data.SqlDbType.Bit));
-            this.DeleteCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_last_received_anchor", System.Data.SqlDbType.BigInt));
-            System.Data.SqlClient.SqlParameter deletecommand_sync_row_countParameter = new System.Data.SqlClient.SqlParameter("@sync_row_count", System.Data.SqlDbType.Int);
-            deletecommand_sync_row_countParameter.Direction = System.Data.ParameterDirection.Output;
-            this.DeleteCommand.Parameters.Add(deletecommand_sync_row_countParameter);
-            // StetchikSyncTableUpdateCommand command.
-            this.UpdateCommand = new System.Data.SqlClient.SqlCommand();
-            this.UpdateCommand.CommandText = @";WITH CHANGE_TRACKING_CONTEXT (@sync_client_id_binary) UPDATE dbo.Stetchik SET [kol] = @kol FROM dbo.Stetchik  JOIN CHANGETABLE(VERSION dbo.Stetchik, ([kod_tm]), (@kod_tm)) CT  ON CT.[kod_tm] = dbo.Stetchik.[kod_tm] WHERE (@sync_force_write = 1 OR CT.SYS_CHANGE_VERSION IS NULL OR CT.SYS_CHANGE_VERSION <= @sync_last_received_anchor OR (CT.SYS_CHANGE_CONTEXT IS NOT NULL AND CT.SYS_CHANGE_CONTEXT = @sync_client_id_binary)) SET @sync_row_count = @@rowcount; IF CHANGE_TRACKING_MIN_VALID_VERSION(object_id(N'dbo.Stetchik')) > @sync_last_received_anchor RAISERROR (N'SQL Server Change Tracking has cleaned up tracking information for table ''%s''. To recover from this error, the client must reinitialize its local database and try again',16,3,N'dbo.Stetchik') ";
-            this.UpdateCommand.CommandType = System.Data.CommandType.Text;
-            this.UpdateCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@kol", System.Data.SqlDbType.Int));
-            this.UpdateCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@kod_tm", System.Data.SqlDbType.Int));
-            this.UpdateCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_force_write", System.Data.SqlDbType.Bit));
-            this.UpdateCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_last_received_anchor", System.Data.SqlDbType.BigInt));
-            this.UpdateCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_client_id_binary", System.Data.SqlDbType.VarBinary));
-            System.Data.SqlClient.SqlParameter updatecommand_sync_row_countParameter = new System.Data.SqlClient.SqlParameter("@sync_row_count", System.Data.SqlDbType.Int);
-            updatecommand_sync_row_countParameter.Direction = System.Data.ParameterDirection.Output;
-            this.UpdateCommand.Parameters.Add(updatecommand_sync_row_countParameter);
-            // StetchikSyncTableSelectConflictDeletedRowsCommand command.
-            this.SelectConflictDeletedRowsCommand = new System.Data.SqlClient.SqlCommand();
-            this.SelectConflictDeletedRowsCommand.CommandText = "SELECT CT.[kod_tm], CT.SYS_CHANGE_CONTEXT, CT.SYS_CHANGE_VERSION FROM CHANGETABLE" +
-                "(CHANGES dbo.Stetchik, @sync_last_received_anchor) CT WHERE (CT.[kod_tm] = @kod_" +
-                "tm AND CT.SYS_CHANGE_OPERATION = \'D\')";
-            this.SelectConflictDeletedRowsCommand.CommandType = System.Data.CommandType.Text;
-            this.SelectConflictDeletedRowsCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_last_received_anchor", System.Data.SqlDbType.BigInt));
-            this.SelectConflictDeletedRowsCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@kod_tm", System.Data.SqlDbType.Int));
-            // StetchikSyncTableSelectConflictUpdatedRowsCommand command.
-            this.SelectConflictUpdatedRowsCommand = new System.Data.SqlClient.SqlCommand();
-            this.SelectConflictUpdatedRowsCommand.CommandText = "SELECT dbo.Stetchik.[kod_tm], [kol], CT.SYS_CHANGE_CONTEXT, CT.SYS_CHANGE_VERSION" +
-                " FROM dbo.Stetchik JOIN CHANGETABLE(VERSION dbo.Stetchik, ([kod_tm]), (@kod_tm))" +
-                " CT  ON CT.[kod_tm] = dbo.Stetchik.[kod_tm]";
-            this.SelectConflictUpdatedRowsCommand.CommandType = System.Data.CommandType.Text;
-            this.SelectConflictUpdatedRowsCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@kod_tm", System.Data.SqlDbType.Int));
-            // StetchikSyncTableSelectIncrementalInsertsCommand command.
-            this.SelectIncrementalInsertsCommand = new System.Data.SqlClient.SqlCommand();
-            this.SelectIncrementalInsertsCommand.CommandText = @"IF @sync_initialized = 0 SELECT dbo.Stetchik.[kod_tm], [kol] FROM dbo.Stetchik LEFT OUTER JOIN CHANGETABLE(CHANGES dbo.Stetchik, @sync_last_received_anchor) CT ON CT.[kod_tm] = dbo.Stetchik.[kod_tm] WHERE (CT.SYS_CHANGE_CONTEXT IS NULL OR CT.SYS_CHANGE_CONTEXT <> @sync_client_id_binary) ELSE  BEGIN SELECT dbo.Stetchik.[kod_tm], [kol] FROM dbo.Stetchik JOIN CHANGETABLE(CHANGES dbo.Stetchik, @sync_last_received_anchor) CT ON CT.[kod_tm] = dbo.Stetchik.[kod_tm] WHERE (CT.SYS_CHANGE_OPERATION = 'I' AND CT.SYS_CHANGE_CREATION_VERSION  <= @sync_new_received_anchor AND (CT.SYS_CHANGE_CONTEXT IS NULL OR CT.SYS_CHANGE_CONTEXT <> @sync_client_id_binary)); IF CHANGE_TRACKING_MIN_VALID_VERSION(object_id(N'dbo.Stetchik')) > @sync_last_received_anchor RAISERROR (N'SQL Server Change Tracking has cleaned up tracking information for table ''%s''. To recover from this error, the client must reinitialize its local database and try again',16,3,N'dbo.Stetchik')  END ";
-            this.SelectIncrementalInsertsCommand.CommandType = System.Data.CommandType.Text;
-            this.SelectIncrementalInsertsCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_initialized", System.Data.SqlDbType.Bit));
-            this.SelectIncrementalInsertsCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_last_received_anchor", System.Data.SqlDbType.BigInt));
-            this.SelectIncrementalInsertsCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_client_id_binary", System.Data.SqlDbType.VarBinary));
-            this.SelectIncrementalInsertsCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_new_received_anchor", System.Data.SqlDbType.BigInt));
-            // StetchikSyncTableSelectIncrementalDeletesCommand command.
-            this.SelectIncrementalDeletesCommand = new System.Data.SqlClient.SqlCommand();
-            this.SelectIncrementalDeletesCommand.CommandText = @"IF @sync_initialized > 0  BEGIN SELECT CT.[kod_tm] FROM CHANGETABLE(CHANGES dbo.Stetchik, @sync_last_received_anchor) CT WHERE (CT.SYS_CHANGE_OPERATION = 'D' AND CT.SYS_CHANGE_VERSION <= @sync_new_received_anchor AND (CT.SYS_CHANGE_CONTEXT IS NULL OR CT.SYS_CHANGE_CONTEXT <> @sync_client_id_binary)); IF CHANGE_TRACKING_MIN_VALID_VERSION(object_id(N'dbo.Stetchik')) > @sync_last_received_anchor RAISERROR (N'SQL Server Change Tracking has cleaned up tracking information for table ''%s''. To recover from this error, the client must reinitialize its local database and try again',16,3,N'dbo.Stetchik')  END ";
-            this.SelectIncrementalDeletesCommand.CommandType = System.Data.CommandType.Text;
-            this.SelectIncrementalDeletesCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_initialized", System.Data.SqlDbType.Bit));
-            this.SelectIncrementalDeletesCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_last_received_anchor", System.Data.SqlDbType.BigInt));
-            this.SelectIncrementalDeletesCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_new_received_anchor", System.Data.SqlDbType.BigInt));
-            this.SelectIncrementalDeletesCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_client_id_binary", System.Data.SqlDbType.VarBinary));
-            // StetchikSyncTableSelectIncrementalUpdatesCommand command.
-            this.SelectIncrementalUpdatesCommand = new System.Data.SqlClient.SqlCommand();
-            this.SelectIncrementalUpdatesCommand.CommandText = @"IF @sync_initialized > 0  BEGIN SELECT dbo.Stetchik.[kod_tm], [kol] FROM dbo.Stetchik JOIN CHANGETABLE(CHANGES dbo.Stetchik, @sync_last_received_anchor) CT ON CT.[kod_tm] = dbo.Stetchik.[kod_tm] WHERE (CT.SYS_CHANGE_OPERATION = 'U' AND CT.SYS_CHANGE_VERSION <= @sync_new_received_anchor AND (CT.SYS_CHANGE_CONTEXT IS NULL OR CT.SYS_CHANGE_CONTEXT <> @sync_client_id_binary)); IF CHANGE_TRACKING_MIN_VALID_VERSION(object_id(N'dbo.Stetchik')) > @sync_last_received_anchor RAISERROR (N'SQL Server Change Tracking has cleaned up tracking information for table ''%s''. To recover from this error, the client must reinitialize its local database and try again',16,3,N'dbo.Stetchik')  END ";
-            this.SelectIncrementalUpdatesCommand.CommandType = System.Data.CommandType.Text;
-            this.SelectIncrementalUpdatesCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_initialized", System.Data.SqlDbType.Bit));
-            this.SelectIncrementalUpdatesCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_last_received_anchor", System.Data.SqlDbType.BigInt));
-            this.SelectIncrementalUpdatesCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_new_received_anchor", System.Data.SqlDbType.BigInt));
-            this.SelectIncrementalUpdatesCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_client_id_binary", System.Data.SqlDbType.VarBinary));
-        }
-        
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private void InitializeAdapterProperties() {
-            this.TableName = "Stetchik";
-        }
-    }
-    
     public partial class TemiSyncAdapter : Microsoft.Synchronization.Data.Server.SyncAdapter {
         
         partial void OnInitialized();
@@ -2440,101 +2281,6 @@ namespace Bezopasnost {
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private void InitializeAdapterProperties() {
             this.TableName = "Temi";
-        }
-    }
-    
-    public partial class tmp_voprosiSyncAdapter : Microsoft.Synchronization.Data.Server.SyncAdapter {
-        
-        partial void OnInitialized();
-        
-        public tmp_voprosiSyncAdapter() {
-            this.InitializeCommands();
-            this.InitializeAdapterProperties();
-            this.OnInitialized();
-        }
-        
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private void InitializeCommands() {
-            // tmp_voprosiSyncTableInsertCommand command.
-            this.InsertCommand = new System.Data.SqlClient.SqlCommand();
-            this.InsertCommand.CommandText = @";WITH CHANGE_TRACKING_CONTEXT (@sync_client_id_binary) INSERT INTO dbo.tmp$voprosi ([kod_vop], [vopros], [kod_tm]) VALUES (@kod_vop, @vopros, @kod_tm) SET @sync_row_count = @@rowcount; IF CHANGE_TRACKING_MIN_VALID_VERSION(object_id(N'dbo.tmp$voprosi')) > @sync_last_received_anchor RAISERROR (N'SQL Server Change Tracking has cleaned up tracking information for table ''%s''. To recover from this error, the client must reinitialize its local database and try again',16,3,N'dbo.tmp$voprosi') ";
-            this.InsertCommand.CommandType = System.Data.CommandType.Text;
-            this.InsertCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_client_id_binary", System.Data.SqlDbType.VarBinary));
-            this.InsertCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@kod_vop", System.Data.SqlDbType.Int));
-            this.InsertCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@vopros", System.Data.SqlDbType.VarChar));
-            this.InsertCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@kod_tm", System.Data.SqlDbType.Int));
-            System.Data.SqlClient.SqlParameter insertcommand_sync_row_countParameter = new System.Data.SqlClient.SqlParameter("@sync_row_count", System.Data.SqlDbType.Int);
-            insertcommand_sync_row_countParameter.Direction = System.Data.ParameterDirection.Output;
-            this.InsertCommand.Parameters.Add(insertcommand_sync_row_countParameter);
-            this.InsertCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_last_received_anchor", System.Data.SqlDbType.BigInt));
-            // tmp_voprosiSyncTableDeleteCommand command.
-            this.DeleteCommand = new System.Data.SqlClient.SqlCommand();
-            this.DeleteCommand.CommandText = @";WITH CHANGE_TRACKING_CONTEXT (@sync_client_id_binary) DELETE dbo.tmp$voprosi FROM dbo.tmp$voprosi JOIN CHANGETABLE(VERSION dbo.tmp$voprosi, ([kod_vop]), (@kod_vop)) CT  ON CT.[kod_vop] = dbo.tmp$voprosi.[kod_vop] WHERE (@sync_force_write = 1 OR CT.SYS_CHANGE_VERSION IS NULL OR CT.SYS_CHANGE_VERSION <= @sync_last_received_anchor OR (CT.SYS_CHANGE_CONTEXT IS NOT NULL AND CT.SYS_CHANGE_CONTEXT = @sync_client_id_binary)) SET @sync_row_count = @@rowcount; IF CHANGE_TRACKING_MIN_VALID_VERSION(object_id(N'dbo.tmp$voprosi')) > @sync_last_received_anchor RAISERROR (N'SQL Server Change Tracking has cleaned up tracking information for table ''%s''. To recover from this error, the client must reinitialize its local database and try again',16,3,N'dbo.tmp$voprosi') ";
-            this.DeleteCommand.CommandType = System.Data.CommandType.Text;
-            this.DeleteCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_client_id_binary", System.Data.SqlDbType.VarBinary));
-            this.DeleteCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@kod_vop", System.Data.SqlDbType.Int));
-            this.DeleteCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_force_write", System.Data.SqlDbType.Bit));
-            this.DeleteCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_last_received_anchor", System.Data.SqlDbType.BigInt));
-            System.Data.SqlClient.SqlParameter deletecommand_sync_row_countParameter = new System.Data.SqlClient.SqlParameter("@sync_row_count", System.Data.SqlDbType.Int);
-            deletecommand_sync_row_countParameter.Direction = System.Data.ParameterDirection.Output;
-            this.DeleteCommand.Parameters.Add(deletecommand_sync_row_countParameter);
-            // tmp_voprosiSyncTableUpdateCommand command.
-            this.UpdateCommand = new System.Data.SqlClient.SqlCommand();
-            this.UpdateCommand.CommandText = @";WITH CHANGE_TRACKING_CONTEXT (@sync_client_id_binary) UPDATE dbo.tmp$voprosi SET [vopros] = @vopros, [kod_tm] = @kod_tm FROM dbo.tmp$voprosi  JOIN CHANGETABLE(VERSION dbo.tmp$voprosi, ([kod_vop]), (@kod_vop)) CT  ON CT.[kod_vop] = dbo.tmp$voprosi.[kod_vop] WHERE (@sync_force_write = 1 OR CT.SYS_CHANGE_VERSION IS NULL OR CT.SYS_CHANGE_VERSION <= @sync_last_received_anchor OR (CT.SYS_CHANGE_CONTEXT IS NOT NULL AND CT.SYS_CHANGE_CONTEXT = @sync_client_id_binary)) SET @sync_row_count = @@rowcount; IF CHANGE_TRACKING_MIN_VALID_VERSION(object_id(N'dbo.tmp$voprosi')) > @sync_last_received_anchor RAISERROR (N'SQL Server Change Tracking has cleaned up tracking information for table ''%s''. To recover from this error, the client must reinitialize its local database and try again',16,3,N'dbo.tmp$voprosi') ";
-            this.UpdateCommand.CommandType = System.Data.CommandType.Text;
-            this.UpdateCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@vopros", System.Data.SqlDbType.VarChar));
-            this.UpdateCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@kod_tm", System.Data.SqlDbType.Int));
-            this.UpdateCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@kod_vop", System.Data.SqlDbType.Int));
-            this.UpdateCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_force_write", System.Data.SqlDbType.Bit));
-            this.UpdateCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_last_received_anchor", System.Data.SqlDbType.BigInt));
-            this.UpdateCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_client_id_binary", System.Data.SqlDbType.VarBinary));
-            System.Data.SqlClient.SqlParameter updatecommand_sync_row_countParameter = new System.Data.SqlClient.SqlParameter("@sync_row_count", System.Data.SqlDbType.Int);
-            updatecommand_sync_row_countParameter.Direction = System.Data.ParameterDirection.Output;
-            this.UpdateCommand.Parameters.Add(updatecommand_sync_row_countParameter);
-            // tmp_voprosiSyncTableSelectConflictDeletedRowsCommand command.
-            this.SelectConflictDeletedRowsCommand = new System.Data.SqlClient.SqlCommand();
-            this.SelectConflictDeletedRowsCommand.CommandText = "SELECT CT.[kod_vop], CT.SYS_CHANGE_CONTEXT, CT.SYS_CHANGE_VERSION FROM CHANGETABL" +
-                "E(CHANGES dbo.tmp$voprosi, @sync_last_received_anchor) CT WHERE (CT.[kod_vop] = " +
-                "@kod_vop AND CT.SYS_CHANGE_OPERATION = \'D\')";
-            this.SelectConflictDeletedRowsCommand.CommandType = System.Data.CommandType.Text;
-            this.SelectConflictDeletedRowsCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_last_received_anchor", System.Data.SqlDbType.BigInt));
-            this.SelectConflictDeletedRowsCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@kod_vop", System.Data.SqlDbType.Int));
-            // tmp_voprosiSyncTableSelectConflictUpdatedRowsCommand command.
-            this.SelectConflictUpdatedRowsCommand = new System.Data.SqlClient.SqlCommand();
-            this.SelectConflictUpdatedRowsCommand.CommandText = "SELECT dbo.tmp$voprosi.[kod_vop], [vopros], [kod_tm], CT.SYS_CHANGE_CONTEXT, CT.S" +
-                "YS_CHANGE_VERSION FROM dbo.tmp$voprosi JOIN CHANGETABLE(VERSION dbo.tmp$voprosi," +
-                " ([kod_vop]), (@kod_vop)) CT  ON CT.[kod_vop] = dbo.tmp$voprosi.[kod_vop]";
-            this.SelectConflictUpdatedRowsCommand.CommandType = System.Data.CommandType.Text;
-            this.SelectConflictUpdatedRowsCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@kod_vop", System.Data.SqlDbType.Int));
-            // tmp_voprosiSyncTableSelectIncrementalInsertsCommand command.
-            this.SelectIncrementalInsertsCommand = new System.Data.SqlClient.SqlCommand();
-            this.SelectIncrementalInsertsCommand.CommandText = @"IF @sync_initialized = 0 SELECT dbo.tmp$voprosi.[kod_vop], [vopros], [kod_tm] FROM dbo.tmp$voprosi LEFT OUTER JOIN CHANGETABLE(CHANGES dbo.tmp$voprosi, @sync_last_received_anchor) CT ON CT.[kod_vop] = dbo.tmp$voprosi.[kod_vop] WHERE (CT.SYS_CHANGE_CONTEXT IS NULL OR CT.SYS_CHANGE_CONTEXT <> @sync_client_id_binary) ELSE  BEGIN SELECT dbo.tmp$voprosi.[kod_vop], [vopros], [kod_tm] FROM dbo.tmp$voprosi JOIN CHANGETABLE(CHANGES dbo.tmp$voprosi, @sync_last_received_anchor) CT ON CT.[kod_vop] = dbo.tmp$voprosi.[kod_vop] WHERE (CT.SYS_CHANGE_OPERATION = 'I' AND CT.SYS_CHANGE_CREATION_VERSION  <= @sync_new_received_anchor AND (CT.SYS_CHANGE_CONTEXT IS NULL OR CT.SYS_CHANGE_CONTEXT <> @sync_client_id_binary)); IF CHANGE_TRACKING_MIN_VALID_VERSION(object_id(N'dbo.tmp$voprosi')) > @sync_last_received_anchor RAISERROR (N'SQL Server Change Tracking has cleaned up tracking information for table ''%s''. To recover from this error, the client must reinitialize its local database and try again',16,3,N'dbo.tmp$voprosi')  END ";
-            this.SelectIncrementalInsertsCommand.CommandType = System.Data.CommandType.Text;
-            this.SelectIncrementalInsertsCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_initialized", System.Data.SqlDbType.Bit));
-            this.SelectIncrementalInsertsCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_last_received_anchor", System.Data.SqlDbType.BigInt));
-            this.SelectIncrementalInsertsCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_client_id_binary", System.Data.SqlDbType.VarBinary));
-            this.SelectIncrementalInsertsCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_new_received_anchor", System.Data.SqlDbType.BigInt));
-            // tmp_voprosiSyncTableSelectIncrementalDeletesCommand command.
-            this.SelectIncrementalDeletesCommand = new System.Data.SqlClient.SqlCommand();
-            this.SelectIncrementalDeletesCommand.CommandText = @"IF @sync_initialized > 0  BEGIN SELECT CT.[kod_vop] FROM CHANGETABLE(CHANGES dbo.tmp$voprosi, @sync_last_received_anchor) CT WHERE (CT.SYS_CHANGE_OPERATION = 'D' AND CT.SYS_CHANGE_VERSION <= @sync_new_received_anchor AND (CT.SYS_CHANGE_CONTEXT IS NULL OR CT.SYS_CHANGE_CONTEXT <> @sync_client_id_binary)); IF CHANGE_TRACKING_MIN_VALID_VERSION(object_id(N'dbo.tmp$voprosi')) > @sync_last_received_anchor RAISERROR (N'SQL Server Change Tracking has cleaned up tracking information for table ''%s''. To recover from this error, the client must reinitialize its local database and try again',16,3,N'dbo.tmp$voprosi')  END ";
-            this.SelectIncrementalDeletesCommand.CommandType = System.Data.CommandType.Text;
-            this.SelectIncrementalDeletesCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_initialized", System.Data.SqlDbType.Bit));
-            this.SelectIncrementalDeletesCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_last_received_anchor", System.Data.SqlDbType.BigInt));
-            this.SelectIncrementalDeletesCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_new_received_anchor", System.Data.SqlDbType.BigInt));
-            this.SelectIncrementalDeletesCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_client_id_binary", System.Data.SqlDbType.VarBinary));
-            // tmp_voprosiSyncTableSelectIncrementalUpdatesCommand command.
-            this.SelectIncrementalUpdatesCommand = new System.Data.SqlClient.SqlCommand();
-            this.SelectIncrementalUpdatesCommand.CommandText = @"IF @sync_initialized > 0  BEGIN SELECT dbo.tmp$voprosi.[kod_vop], [vopros], [kod_tm] FROM dbo.tmp$voprosi JOIN CHANGETABLE(CHANGES dbo.tmp$voprosi, @sync_last_received_anchor) CT ON CT.[kod_vop] = dbo.tmp$voprosi.[kod_vop] WHERE (CT.SYS_CHANGE_OPERATION = 'U' AND CT.SYS_CHANGE_VERSION <= @sync_new_received_anchor AND (CT.SYS_CHANGE_CONTEXT IS NULL OR CT.SYS_CHANGE_CONTEXT <> @sync_client_id_binary)); IF CHANGE_TRACKING_MIN_VALID_VERSION(object_id(N'dbo.tmp$voprosi')) > @sync_last_received_anchor RAISERROR (N'SQL Server Change Tracking has cleaned up tracking information for table ''%s''. To recover from this error, the client must reinitialize its local database and try again',16,3,N'dbo.tmp$voprosi')  END ";
-            this.SelectIncrementalUpdatesCommand.CommandType = System.Data.CommandType.Text;
-            this.SelectIncrementalUpdatesCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_initialized", System.Data.SqlDbType.Bit));
-            this.SelectIncrementalUpdatesCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_last_received_anchor", System.Data.SqlDbType.BigInt));
-            this.SelectIncrementalUpdatesCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_new_received_anchor", System.Data.SqlDbType.BigInt));
-            this.SelectIncrementalUpdatesCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_client_id_binary", System.Data.SqlDbType.VarBinary));
-        }
-        
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        private void InitializeAdapterProperties() {
-            this.TableName = "tmp$voprosi";
         }
     }
     
@@ -2645,12 +2391,12 @@ namespace Bezopasnost {
         private void InitializeCommands() {
             // VoprosiSyncTableInsertCommand command.
             this.InsertCommand = new System.Data.SqlClient.SqlCommand();
-            this.InsertCommand.CommandText = @" SET IDENTITY_INSERT dbo.Voprosi ON ;WITH CHANGE_TRACKING_CONTEXT (@sync_client_id_binary) INSERT INTO dbo.Voprosi ([kod_vop], [vopros], [kod_tm], [ek]) VALUES (@kod_vop, @vopros, @kod_tm, @ek) SET @sync_row_count = @@rowcount; IF CHANGE_TRACKING_MIN_VALID_VERSION(object_id(N'dbo.Voprosi')) > @sync_last_received_anchor RAISERROR (N'SQL Server Change Tracking has cleaned up tracking information for table ''%s''. To recover from this error, the client must reinitialize its local database and try again',16,3,N'dbo.Voprosi')  SET IDENTITY_INSERT dbo.Voprosi OFF ";
+            this.InsertCommand.CommandText = @" SET IDENTITY_INSERT dbo.Voprosi ON ;WITH CHANGE_TRACKING_CONTEXT (@sync_client_id_binary) INSERT INTO dbo.Voprosi ([kod_vop], [vopros], [kod_p], [ek]) VALUES (@kod_vop, @vopros, @kod_p, @ek) SET @sync_row_count = @@rowcount; IF CHANGE_TRACKING_MIN_VALID_VERSION(object_id(N'dbo.Voprosi')) > @sync_last_received_anchor RAISERROR (N'SQL Server Change Tracking has cleaned up tracking information for table ''%s''. To recover from this error, the client must reinitialize its local database and try again',16,3,N'dbo.Voprosi')  SET IDENTITY_INSERT dbo.Voprosi OFF ";
             this.InsertCommand.CommandType = System.Data.CommandType.Text;
             this.InsertCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_client_id_binary", System.Data.SqlDbType.VarBinary));
             this.InsertCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@kod_vop", System.Data.SqlDbType.Int));
             this.InsertCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@vopros", System.Data.SqlDbType.VarChar));
-            this.InsertCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@kod_tm", System.Data.SqlDbType.Int));
+            this.InsertCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@kod_p", System.Data.SqlDbType.Int));
             this.InsertCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@ek", System.Data.SqlDbType.Bit));
             System.Data.SqlClient.SqlParameter insertcommand_sync_row_countParameter = new System.Data.SqlClient.SqlParameter("@sync_row_count", System.Data.SqlDbType.Int);
             insertcommand_sync_row_countParameter.Direction = System.Data.ParameterDirection.Output;
@@ -2669,10 +2415,10 @@ namespace Bezopasnost {
             this.DeleteCommand.Parameters.Add(deletecommand_sync_row_countParameter);
             // VoprosiSyncTableUpdateCommand command.
             this.UpdateCommand = new System.Data.SqlClient.SqlCommand();
-            this.UpdateCommand.CommandText = @";WITH CHANGE_TRACKING_CONTEXT (@sync_client_id_binary) UPDATE dbo.Voprosi SET [vopros] = @vopros, [kod_tm] = @kod_tm, [ek] = @ek FROM dbo.Voprosi  JOIN CHANGETABLE(VERSION dbo.Voprosi, ([kod_vop]), (@kod_vop)) CT  ON CT.[kod_vop] = dbo.Voprosi.[kod_vop] WHERE (@sync_force_write = 1 OR CT.SYS_CHANGE_VERSION IS NULL OR CT.SYS_CHANGE_VERSION <= @sync_last_received_anchor OR (CT.SYS_CHANGE_CONTEXT IS NOT NULL AND CT.SYS_CHANGE_CONTEXT = @sync_client_id_binary)) SET @sync_row_count = @@rowcount; IF CHANGE_TRACKING_MIN_VALID_VERSION(object_id(N'dbo.Voprosi')) > @sync_last_received_anchor RAISERROR (N'SQL Server Change Tracking has cleaned up tracking information for table ''%s''. To recover from this error, the client must reinitialize its local database and try again',16,3,N'dbo.Voprosi') ";
+            this.UpdateCommand.CommandText = @";WITH CHANGE_TRACKING_CONTEXT (@sync_client_id_binary) UPDATE dbo.Voprosi SET [vopros] = @vopros, [kod_p] = @kod_p, [ek] = @ek FROM dbo.Voprosi  JOIN CHANGETABLE(VERSION dbo.Voprosi, ([kod_vop]), (@kod_vop)) CT  ON CT.[kod_vop] = dbo.Voprosi.[kod_vop] WHERE (@sync_force_write = 1 OR CT.SYS_CHANGE_VERSION IS NULL OR CT.SYS_CHANGE_VERSION <= @sync_last_received_anchor OR (CT.SYS_CHANGE_CONTEXT IS NOT NULL AND CT.SYS_CHANGE_CONTEXT = @sync_client_id_binary)) SET @sync_row_count = @@rowcount; IF CHANGE_TRACKING_MIN_VALID_VERSION(object_id(N'dbo.Voprosi')) > @sync_last_received_anchor RAISERROR (N'SQL Server Change Tracking has cleaned up tracking information for table ''%s''. To recover from this error, the client must reinitialize its local database and try again',16,3,N'dbo.Voprosi') ";
             this.UpdateCommand.CommandType = System.Data.CommandType.Text;
             this.UpdateCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@vopros", System.Data.SqlDbType.VarChar));
-            this.UpdateCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@kod_tm", System.Data.SqlDbType.Int));
+            this.UpdateCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@kod_p", System.Data.SqlDbType.Int));
             this.UpdateCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@ek", System.Data.SqlDbType.Bit));
             this.UpdateCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@kod_vop", System.Data.SqlDbType.Int));
             this.UpdateCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_force_write", System.Data.SqlDbType.Bit));
@@ -2691,14 +2437,14 @@ namespace Bezopasnost {
             this.SelectConflictDeletedRowsCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@kod_vop", System.Data.SqlDbType.Int));
             // VoprosiSyncTableSelectConflictUpdatedRowsCommand command.
             this.SelectConflictUpdatedRowsCommand = new System.Data.SqlClient.SqlCommand();
-            this.SelectConflictUpdatedRowsCommand.CommandText = "SELECT dbo.Voprosi.[kod_vop], [vopros], [kod_tm], [ek], CT.SYS_CHANGE_CONTEXT, CT" +
-                ".SYS_CHANGE_VERSION FROM dbo.Voprosi JOIN CHANGETABLE(VERSION dbo.Voprosi, ([kod" +
-                "_vop]), (@kod_vop)) CT  ON CT.[kod_vop] = dbo.Voprosi.[kod_vop]";
+            this.SelectConflictUpdatedRowsCommand.CommandText = "SELECT dbo.Voprosi.[kod_vop], [vopros], [kod_p], [ek], CT.SYS_CHANGE_CONTEXT, CT." +
+                "SYS_CHANGE_VERSION FROM dbo.Voprosi JOIN CHANGETABLE(VERSION dbo.Voprosi, ([kod_" +
+                "vop]), (@kod_vop)) CT  ON CT.[kod_vop] = dbo.Voprosi.[kod_vop]";
             this.SelectConflictUpdatedRowsCommand.CommandType = System.Data.CommandType.Text;
             this.SelectConflictUpdatedRowsCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@kod_vop", System.Data.SqlDbType.Int));
             // VoprosiSyncTableSelectIncrementalInsertsCommand command.
             this.SelectIncrementalInsertsCommand = new System.Data.SqlClient.SqlCommand();
-            this.SelectIncrementalInsertsCommand.CommandText = @"IF @sync_initialized = 0 SELECT dbo.Voprosi.[kod_vop], [vopros], [kod_tm], [ek] FROM dbo.Voprosi LEFT OUTER JOIN CHANGETABLE(CHANGES dbo.Voprosi, @sync_last_received_anchor) CT ON CT.[kod_vop] = dbo.Voprosi.[kod_vop] WHERE (CT.SYS_CHANGE_CONTEXT IS NULL OR CT.SYS_CHANGE_CONTEXT <> @sync_client_id_binary) ELSE  BEGIN SELECT dbo.Voprosi.[kod_vop], [vopros], [kod_tm], [ek] FROM dbo.Voprosi JOIN CHANGETABLE(CHANGES dbo.Voprosi, @sync_last_received_anchor) CT ON CT.[kod_vop] = dbo.Voprosi.[kod_vop] WHERE (CT.SYS_CHANGE_OPERATION = 'I' AND CT.SYS_CHANGE_CREATION_VERSION  <= @sync_new_received_anchor AND (CT.SYS_CHANGE_CONTEXT IS NULL OR CT.SYS_CHANGE_CONTEXT <> @sync_client_id_binary)); IF CHANGE_TRACKING_MIN_VALID_VERSION(object_id(N'dbo.Voprosi')) > @sync_last_received_anchor RAISERROR (N'SQL Server Change Tracking has cleaned up tracking information for table ''%s''. To recover from this error, the client must reinitialize its local database and try again',16,3,N'dbo.Voprosi')  END ";
+            this.SelectIncrementalInsertsCommand.CommandText = @"IF @sync_initialized = 0 SELECT dbo.Voprosi.[kod_vop], [vopros], [kod_p], [ek] FROM dbo.Voprosi LEFT OUTER JOIN CHANGETABLE(CHANGES dbo.Voprosi, @sync_last_received_anchor) CT ON CT.[kod_vop] = dbo.Voprosi.[kod_vop] WHERE (CT.SYS_CHANGE_CONTEXT IS NULL OR CT.SYS_CHANGE_CONTEXT <> @sync_client_id_binary) ELSE  BEGIN SELECT dbo.Voprosi.[kod_vop], [vopros], [kod_p], [ek] FROM dbo.Voprosi JOIN CHANGETABLE(CHANGES dbo.Voprosi, @sync_last_received_anchor) CT ON CT.[kod_vop] = dbo.Voprosi.[kod_vop] WHERE (CT.SYS_CHANGE_OPERATION = 'I' AND CT.SYS_CHANGE_CREATION_VERSION  <= @sync_new_received_anchor AND (CT.SYS_CHANGE_CONTEXT IS NULL OR CT.SYS_CHANGE_CONTEXT <> @sync_client_id_binary)); IF CHANGE_TRACKING_MIN_VALID_VERSION(object_id(N'dbo.Voprosi')) > @sync_last_received_anchor RAISERROR (N'SQL Server Change Tracking has cleaned up tracking information for table ''%s''. To recover from this error, the client must reinitialize its local database and try again',16,3,N'dbo.Voprosi')  END ";
             this.SelectIncrementalInsertsCommand.CommandType = System.Data.CommandType.Text;
             this.SelectIncrementalInsertsCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_initialized", System.Data.SqlDbType.Bit));
             this.SelectIncrementalInsertsCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_last_received_anchor", System.Data.SqlDbType.BigInt));
@@ -2714,7 +2460,7 @@ namespace Bezopasnost {
             this.SelectIncrementalDeletesCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_client_id_binary", System.Data.SqlDbType.VarBinary));
             // VoprosiSyncTableSelectIncrementalUpdatesCommand command.
             this.SelectIncrementalUpdatesCommand = new System.Data.SqlClient.SqlCommand();
-            this.SelectIncrementalUpdatesCommand.CommandText = @"IF @sync_initialized > 0  BEGIN SELECT dbo.Voprosi.[kod_vop], [vopros], [kod_tm], [ek] FROM dbo.Voprosi JOIN CHANGETABLE(CHANGES dbo.Voprosi, @sync_last_received_anchor) CT ON CT.[kod_vop] = dbo.Voprosi.[kod_vop] WHERE (CT.SYS_CHANGE_OPERATION = 'U' AND CT.SYS_CHANGE_VERSION <= @sync_new_received_anchor AND (CT.SYS_CHANGE_CONTEXT IS NULL OR CT.SYS_CHANGE_CONTEXT <> @sync_client_id_binary)); IF CHANGE_TRACKING_MIN_VALID_VERSION(object_id(N'dbo.Voprosi')) > @sync_last_received_anchor RAISERROR (N'SQL Server Change Tracking has cleaned up tracking information for table ''%s''. To recover from this error, the client must reinitialize its local database and try again',16,3,N'dbo.Voprosi')  END ";
+            this.SelectIncrementalUpdatesCommand.CommandText = @"IF @sync_initialized > 0  BEGIN SELECT dbo.Voprosi.[kod_vop], [vopros], [kod_p], [ek] FROM dbo.Voprosi JOIN CHANGETABLE(CHANGES dbo.Voprosi, @sync_last_received_anchor) CT ON CT.[kod_vop] = dbo.Voprosi.[kod_vop] WHERE (CT.SYS_CHANGE_OPERATION = 'U' AND CT.SYS_CHANGE_VERSION <= @sync_new_received_anchor AND (CT.SYS_CHANGE_CONTEXT IS NULL OR CT.SYS_CHANGE_CONTEXT <> @sync_client_id_binary)); IF CHANGE_TRACKING_MIN_VALID_VERSION(object_id(N'dbo.Voprosi')) > @sync_last_received_anchor RAISERROR (N'SQL Server Change Tracking has cleaned up tracking information for table ''%s''. To recover from this error, the client must reinitialize its local database and try again',16,3,N'dbo.Voprosi')  END ";
             this.SelectIncrementalUpdatesCommand.CommandType = System.Data.CommandType.Text;
             this.SelectIncrementalUpdatesCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_initialized", System.Data.SqlDbType.Bit));
             this.SelectIncrementalUpdatesCommand.Parameters.Add(new System.Data.SqlClient.SqlParameter("@sync_last_received_anchor", System.Data.SqlDbType.BigInt));
@@ -2762,11 +2508,7 @@ namespace Bezopasnost {
         
         private SoderzhanieSyncAdapter _soderzhanieSyncAdapter;
         
-        private StetchikSyncAdapter _stetchikSyncAdapter;
-        
         private TemiSyncAdapter _temiSyncAdapter;
-        
-        private tmp_voprosiSyncAdapter _tmp_voprosiSyncAdapter;
         
         private Vidi_rabotSyncAdapter _vidi_rabotSyncAdapter;
         
@@ -2950,32 +2692,12 @@ namespace Bezopasnost {
         }
         
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public StetchikSyncAdapter StetchikSyncAdapter {
-            get {
-                return this._stetchikSyncAdapter;
-            }
-            set {
-                this._stetchikSyncAdapter = value;
-            }
-        }
-        
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         public TemiSyncAdapter TemiSyncAdapter {
             get {
                 return this._temiSyncAdapter;
             }
             set {
                 this._temiSyncAdapter = value;
-            }
-        }
-        
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public tmp_voprosiSyncAdapter tmp_voprosiSyncAdapter {
-            get {
-                return this._tmp_voprosiSyncAdapter;
-            }
-            set {
-                this._tmp_voprosiSyncAdapter = value;
             }
         }
         
@@ -3039,12 +2761,8 @@ namespace Bezopasnost {
             this.SyncAdapters.Add(this._razdelenieSyncAdapter);
             this._soderzhanieSyncAdapter = new SoderzhanieSyncAdapter();
             this.SyncAdapters.Add(this._soderzhanieSyncAdapter);
-            this._stetchikSyncAdapter = new StetchikSyncAdapter();
-            this.SyncAdapters.Add(this._stetchikSyncAdapter);
             this._temiSyncAdapter = new TemiSyncAdapter();
             this.SyncAdapters.Add(this._temiSyncAdapter);
-            this._tmp_voprosiSyncAdapter = new tmp_voprosiSyncAdapter();
-            this.SyncAdapters.Add(this._tmp_voprosiSyncAdapter);
             this._vidi_rabotSyncAdapter = new Vidi_rabotSyncAdapter();
             this.SyncAdapters.Add(this._vidi_rabotSyncAdapter);
             this._voprosiSyncAdapter = new VoprosiSyncAdapter();

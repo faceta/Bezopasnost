@@ -17,7 +17,7 @@ namespace Bezopasnost
             InitializeComponent();
         }
 
-        public int schetchik, schetchik2, schetchik3, kolPO = 0, schP = 0, schN = 0, kolP = 0, kolN = 0;
+        public int schetchik, schetchik2, schetchik3, kolPO = 0, schP = 0, schN = 0, kolP = 0, kolN = 0, vop = 0;
         public int itog;
         public int[] k = {0,0,0,0,0};
 
@@ -26,13 +26,23 @@ namespace Bezopasnost
         {
             Form1 formGlavn = new Form1();
             SqlConnection conn = new SqlConnection(formGlavn.connect);
-            
             string sql =
+            " SELECT tem.kod_tm " +
+            "     , tema " +
+            "     , COUNT(vopros) " +
+            " FROM Temi tem " +
+            " LEFT JOIN Podtemi pt ON pt.kod_tm = tem.kod_tm " +
+            " LEFT JOIN Punkti pun ON (tem.kod_tm = pun.kod_tm OR pun.kod_ptm = pt.kod_ptm) " +
+            " LEFT JOIN Voprosi vop ON pun.kod_p = vop.kod_p " +
+            " WHERE kod_inst = " + Dannie.KodInst +
+            " GROUP BY tem.kod_tm, tema " 
+            ;
+            /*string sql =
                " SELECT kod_tm " +
                   " , tema " +
                " FROM Temi " +
                " Where kod_inst = " + Dannie.KodInst
-            ;
+            ;*/
 
             SqlDataAdapter adapter = new SqlDataAdapter(sql, conn);
             DataSet ds = new DataSet();
@@ -40,17 +50,35 @@ namespace Bezopasnost
             adapter.Fill(ds);
             conn.Close();
             dataGridView2.DataSource = ds.Tables[0];
-            //dataGridView2.Columns[0].Visible = false;
-            //dataGridView2.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+           
+            string qN =
+               "SELECT kol_vop," +
+                  "kol_dop " +
+               "FROM Nastrojki "
+            ;
+            SqlDataAdapter adapterN = new SqlDataAdapter(qN, conn);
+            DataSet dsN = new DataSet();
+            conn.Open();
+            adapterN.Fill(dsN);
+            conn.Close();
+            dataGridView4.DataSource = dsN.Tables[0];
+
+            int prcV = Convert.ToInt32(dataGridView4.Rows[0].Cells[0].Value.ToString());
+            int prcDV = Convert.ToInt32(dataGridView4.Rows[0].Cells[1].Value.ToString());
+            int kV = Convert.ToInt32(dataGridView2.Rows[schetchik2].Cells[2].Value.ToString());
 
             string sql2 =
-                " SELECT TOP 3 vopros, vop.kod_vop, COUNT(otvet) " +
-                " FROM Voprosi vop " +
-                " LEFT JOIN Otveti ot ON vop.kod_vop = ot.kod_vop " +
-                " WHERE kod_tm = " + Convert.ToInt32(dataGridView2.Rows[schetchik2].Cells[0].Value.ToString()) + 
-                   " AND otmetka = 1 " +
-                " GROUP BY vopros, vop.kod_vop " +
-                " ORDER BY NEWID() "
+                " SELECT TOP " + prcV * kV / 100 + " vopros, vop.kod_vop, COUNT(otvet), vop.kod_p  " +
+                " FROM Voprosi vop  " +
+                " LEFT JOIN Otveti ot ON vop.kod_vop = ot.kod_vop  " +
+                " LEFT JOIN Punkti pun ON pun.kod_p = vop.kod_p " +
+                " LEFT JOIN Podtemi pt ON pun.kod_ptm = pt.kod_ptm " +
+                " LEFT JOIN Temi tem ON (tem.kod_tm = pun.kod_tm OR pt.kod_tm = tem.kod_tm)   " +
+                " WHERE tem.kod_tm = " + Convert.ToInt32(dataGridView2.Rows[schetchik2].Cells[0].Value.ToString()) + 
+                "     AND otmetka = 1  " +
+                " GROUP BY vopros, vop.kod_vop, vop.kod_p  " +
+                " ORDER BY NEWID()  " 
             ;
 
             SqlDataAdapter adapter1 = new SqlDataAdapter(sql2, conn);
@@ -58,11 +86,7 @@ namespace Bezopasnost
             conn.Open();
             adapter1.Fill(ds1);
             conn.Close();
-            dataGridView1.DataSource = ds1.Tables[0];
-            //dataGridView1.Columns[1].Visible = false;
-            //dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            
-
+            dataGridView1.DataSource = ds1.Tables[0];           
               }
         public void testik2()
         {
@@ -148,20 +172,20 @@ namespace Bezopasnost
 
         private void button1_Click(object sender, EventArgs e)
         {
+            button8.Visible = false;
+            textBox2.Visible = false;
+            vop += 1;
             schP = 0; 
             schN = 0;
 
             button1.Enabled = false;
             button2.Enabled = true;
+ 
             if (dataGridView1.Rows.Count == schetchik)
             {
                 schetchik2 += 1;
-                //textBox7.Text = schetchik2.ToString();
                 if (dataGridView2.Rows.Count == schetchik2)
                 {
-                    //button1.Visible = false;
-                    //button2.Visible = true;
-                    //button2.Text = "Завершить";
                     button1.Enabled = false;
                     itog = (kolP * 100) / (kolP + kolN);
                     textBox1.Text = "Вы прошли тест на " + itog.ToString() + "%. Если меньше 90% рекомендуется повторить материал.";
@@ -181,35 +205,21 @@ namespace Bezopasnost
                 {
                     testik();
                     schetchik = 0;
-                    // button1.Visible = true;
-                    // button2.Visible = false;
                     button1.Text = "Далее >> ";
-                    textBox1.Text = dataGridView1.Rows[schetchik].Cells[0].Value.ToString();
-                    //textBox2.Text = schetchik.ToString();
+                    textBox1.Text = "Вопрос " + vop.ToString() + ". " + dataGridView1.Rows[schetchik].Cells[0].Value.ToString();
                     schetchik += 1;
                     //-------------------Загрузка ответов------------------
-                    testik2();
-                    
-                    //kolPO = Convert.ToInt32(dataGridView1.Rows[schetchik].Cells[2].Value.ToString());
-                    
+                    testik2();          
                 }
             }
             else
             {
                 button1.Text = "Далее >> ";
-                textBox1.Text = dataGridView1.Rows[schetchik].Cells[0].Value.ToString();
-                //textBox2.Text = schetchik.ToString();
+                textBox1.Text = "Вопрос " + vop.ToString() + ". " + dataGridView1.Rows[schetchik].Cells[0].Value.ToString();
                 schetchik += 1;
                 //-------------------Загрузка ответов------------------
                 testik2();
-               // kolPO = Convert.ToInt32(dataGridView1.Rows[schetchik].Cells[2].Value.ToString());
-                //textBox2.Text = kolPO.ToString();
-                //textBox7.Text = dataGridView1.Rows[0].Cells[3].Value.ToString();
-            }
-
-           
-
-                
+            }    
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -223,12 +233,11 @@ namespace Bezopasnost
                 if (l == l1)
                 {
                     schP += 1;
-                    //textBox3.Text = schP.ToString();
                 }
                 else
                 {
                     schN += 1;
-                    //textBox4.Text = schN.ToString();
+                    button8.Visible = true;
                 }
             }
             if (schN == 0)
@@ -256,6 +265,13 @@ namespace Bezopasnost
                 k[j] = 0;
             }
             button2.Enabled = false;
+            button3.Enabled = false;
+            button4.Enabled = false;
+            button5.Enabled = false;
+            button6.Enabled = false;
+            button7.Enabled = false;
+
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -331,6 +347,65 @@ namespace Bezopasnost
                 button7.BackColor = SystemColors.Control;
                 k[4] = 0;
             }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if (button8.BackColor == SystemColors.GradientInactiveCaption)
+            {
+                button8.BackColor = SystemColors.Control;
+                textBox2.Visible = true;
+            }
+            else
+            {
+                button8.BackColor = SystemColors.GradientInactiveCaption;
+                textBox2.Visible = false;
+            }
+            
+            Form1 formGlavn = new Form1();
+            SqlConnection conn = new SqlConnection(formGlavn.connect);
+            
+            string sql =
+                            " SELECT punkt " +
+                               " , p.soderzh s1 " +
+                        " FROM Punkti p" +
+                        " WHERE kod_p = '" + Convert.ToInt32(dataGridView1.Rows[schetchik-1].Cells[3].Value.ToString()) + "'"
+                        ;
+
+
+            SqlDataAdapter adapterP = new SqlDataAdapter(sql, conn);
+            DataTable dtTreeP = new DataTable();
+            conn.Open();
+            adapterP.Fill(dtTreeP);
+            conn.Close();
+
+
+            foreach (DataRow dta in dtTreeP.Rows)
+            {
+                textBox2.Text = dta["s1"].ToString();
+                string punkti = " ";
+                string sql2 =
+                            " SELECT podpunkti" +
+                                "  ,pp.soderzh s2 " +
+                            " FROM Punkti p" +
+                            " LEFT JOIN  PodPunkti pp ON p.kod_p = pp.kod_p " +
+                            " WHERE p.kod_p = '" + Convert.ToInt32(dataGridView1.Rows[schetchik-1].Cells[3].Value.ToString()) + "'"
+                            ;
+                SqlDataAdapter adapterP2 = new SqlDataAdapter(sql2, conn);
+                DataTable dtTreeP2 = new DataTable();
+                conn.Open();
+                adapterP2.Fill(dtTreeP2);
+                conn.Close();
+
+                foreach (DataRow dta2 in dtTreeP2.Rows)
+                {
+                    punkti = " ";
+                    punkti = "   " + dta2["podpunkti"].ToString() + " " + dta2["s2"].ToString();
+                    textBox2.Text = textBox2.Text + "\r\n\r\n" + punkti;
+                }
+
+            }
+            textBox2.Text = textBox2.Text + "\r\n";
         }
     }
 }

@@ -45,6 +45,8 @@ namespace Bezopasnost
                 журналСтатистикиToolStripMenuItem.Visible = true;
             }
 
+         
+
             Vid_r vdr = new Vid_r();
             vdr.MdiParent = this;
             vdr.Show();
@@ -133,9 +135,13 @@ namespace Bezopasnost
 
         private void экзаменToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            InstrEk ek = new InstrEk();
-            ek.MdiParent = this;
-            ek.Show();
+            Ekzam formEkzam = new Ekzam();
+            formEkzam.MdiParent = this;
+            formEkzam.Show();
+
+            //InstrEk ek = new InstrEk();
+            //ek.MdiParent = this;
+            //ek.Show();
         }
 
         private void комиссияToolStripMenuItem_Click(object sender, EventArgs e)
@@ -156,6 +162,13 @@ namespace Bezopasnost
             formEkzam.MdiParent = this;
             formEkzam.Show();
             
+        }
+
+        private void настройкаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Nastrojki nast = new Nastrojki();
+            nast.MdiParent = this;
+            nast.Show();
         }
 
     }

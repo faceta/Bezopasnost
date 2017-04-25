@@ -105,6 +105,7 @@ namespace Bezopasnost
 
             comboBox1.DisplayMember = "fio";
             comboBox1.ValueMember = "kod_r";
+            Dannie.KodRabot = Convert.ToInt32(comboBox1.SelectedValue.ToString());
         }
 
         private void comboBox1_SelectedValueChanged(object sender, EventArgs e)

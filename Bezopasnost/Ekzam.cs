@@ -39,10 +39,10 @@ namespace Bezopasnost
             dataGridView1.Columns[0].Visible = false;
             dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            for (int i = 0; i <= dataGridView1.Rows.Count; i++)
-            {
-                dataGridView1.Rows[i].Height = 35;
-            }
+            //for (int i = 0; i <= dataGridView1.Rows.Count; i++)
+            //{
+            //    dataGridView1.Rows[i].Height = 35;
+            //}
 
         }
 
@@ -83,7 +83,7 @@ namespace Bezopasnost
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             int nomStr = dataGridView1.CurrentCell.RowIndex;
-            Dannie.DataEk = dataGridView1.Rows[nomStr].Cells[0].Value.ToString();
+            Dannie.DataEk = dataGridView1.Rows[nomStr].Cells[1].Value.ToString();
             Dannie.KodEk = Convert.ToInt32(dataGridView1.Rows[nomStr].Cells[0].Value.ToString());
         }
 
@@ -107,6 +107,13 @@ namespace Bezopasnost
             Komissiya formKomissiya = new Komissiya();
             formKomissiya.MdiParent = this.MdiParent;
             formKomissiya.Show();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            InstrEk ek = new InstrEk();
+            
+            ek.Show();
         }
     }
 }

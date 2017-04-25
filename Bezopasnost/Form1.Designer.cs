@@ -36,6 +36,7 @@
             this.группыБезопасностиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.видыРаботToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.членыКомиссииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.экзаменToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.режимыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.обучениеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.тестированиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,8 +46,8 @@
             this.уведомленияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.загрузкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.настройкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
-            this.экзаменToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,7 +60,8 @@
             this.комиссияToolStripMenuItem,
             this.уведомленияToolStripMenuItem,
             this.загрузкаToolStripMenuItem,
-            this.справкаToolStripMenuItem});
+            this.справкаToolStripMenuItem,
+            this.настройкаToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(894, 24);
@@ -114,6 +116,13 @@
             this.членыКомиссииToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.членыКомиссииToolStripMenuItem.Text = "Члены комиссии";
             this.членыКомиссииToolStripMenuItem.Click += new System.EventHandler(this.членыКомиссииToolStripMenuItem_Click_1);
+            // 
+            // экзаменToolStripMenuItem1
+            // 
+            this.экзаменToolStripMenuItem1.Name = "экзаменToolStripMenuItem1";
+            this.экзаменToolStripMenuItem1.Size = new System.Drawing.Size(195, 22);
+            this.экзаменToolStripMenuItem1.Text = "Экзамен";
+            this.экзаменToolStripMenuItem1.Click += new System.EventHandler(this.экзаменToolStripMenuItem1_Click);
             // 
             // режимыToolStripMenuItem
             // 
@@ -179,23 +188,23 @@
             this.справкаToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.справкаToolStripMenuItem.Text = "Справка";
             // 
+            // настройкаToolStripMenuItem
+            // 
+            this.настройкаToolStripMenuItem.Name = "настройкаToolStripMenuItem";
+            this.настройкаToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
+            this.настройкаToolStripMenuItem.Text = "Настройки";
+            this.настройкаToolStripMenuItem.Click += new System.EventHandler(this.настройкаToolStripMenuItem_Click);
+            // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Candara", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(527, 6);
+            this.label1.Location = new System.Drawing.Point(601, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(42, 18);
             this.label1.TabIndex = 1;
             this.label1.Text = "label1";
-            // 
-            // экзаменToolStripMenuItem1
-            // 
-            this.экзаменToolStripMenuItem1.Name = "экзаменToolStripMenuItem1";
-            this.экзаменToolStripMenuItem1.Size = new System.Drawing.Size(195, 22);
-            this.экзаменToolStripMenuItem1.Text = "Экзамен";
-            this.экзаменToolStripMenuItem1.Click += new System.EventHandler(this.экзаменToolStripMenuItem1_Click);
             // 
             // Form1
             // 
@@ -241,6 +250,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem уведомленияToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem экзаменToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem настройкаToolStripMenuItem;
 
 
 

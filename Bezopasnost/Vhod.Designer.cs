@@ -120,10 +120,10 @@
             this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button1.Location = new System.Drawing.Point(12, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(59, 52);
+            this.button1.Size = new System.Drawing.Size(59, 53);
             this.button1.TabIndex = 0;
             this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button1.UseVisualStyleBackColor = true;
@@ -145,7 +145,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(209, 221);
+            this.ClientSize = new System.Drawing.Size(211, 221);
             this.ControlBox = false;
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label2);

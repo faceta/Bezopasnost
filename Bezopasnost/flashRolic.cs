@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using AxShockwaveFlashObjects;
+//using AxShockwaveFlashObjects;
 
 namespace Bezopasnost
 {
@@ -16,9 +16,10 @@ namespace Bezopasnost
         {
             InitializeComponent();
         }
-        public AxShockwaveFlash fl;
+       // public AxShockwaveFlash fl;
         private void flashRolic_Load(object sender, EventArgs e)
         {
+            /*
             //Инициализируем новый компонент AxShockwaveFlash
             fl = new AxShockwaveFlash();
             //задаем координаты левого верхнего угла элемента управления
@@ -50,14 +51,17 @@ namespace Bezopasnost
 
             //Выбираем первый найденный файл
             comboBox1.SelectedIndex = 0;
+             */
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            /*
             fl.Movie = Application.StartupPath
               + "\\" + comboBox1.SelectedItem.ToString();
             fl.Forward();
             fl.Play();
+             * */
         }
     }
 }

@@ -123,29 +123,34 @@ namespace Bezopasnost
                 button3.Text = dataGridView3.Rows[0].Cells[0].Value.ToString();
                 kol1 += 1;
                 button3.Enabled = true;
+                checkBox1.Enabled = true;
 
                 if (dataGridView3.Rows.Count >= kol1)
                 {
                     button4.Text = dataGridView3.Rows[1].Cells[0].Value.ToString();
                     kol1 += 1;
                     button4.Enabled = true;
+                    checkBox2.Enabled = true;
 
                     if (dataGridView3.Rows.Count >= kol1)
                     {
                         button5.Text = dataGridView3.Rows[2].Cells[0].Value.ToString();
                         kol1 += 1;
                         button5.Enabled = true;
+                        checkBox3.Enabled = true;
 
                         if (dataGridView3.Rows.Count >= kol1)
                         {
                             button6.Text = dataGridView3.Rows[3].Cells[0].Value.ToString();
                             kol1 += 1;
                             button6.Enabled = true;
+                            checkBox4.Enabled = true;
 
                             if (dataGridView3.Rows.Count >= kol1)
                             {
                                 button7.Text = dataGridView3.Rows[4].Cells[0].Value.ToString();
                                 button7.Enabled = true;
+                                checkBox5.Enabled = true;
                             }
                         }
                     }
@@ -194,11 +199,18 @@ namespace Bezopasnost
                     button5.Enabled = false;
                     button6.Enabled = false;
                     button7.Enabled = false;
+                    checkBox1.Enabled = false;
+                    checkBox2.Enabled = false;
+                    checkBox3.Enabled = false;
+                    checkBox4.Enabled = false;
+                    checkBox5.Enabled = false;
+
                     button3.Text = "";
                     button4.Text = "";
                     button5.Text = "";
                     button6.Text = "";
                     button7.Text = "";
+                    
                     button2.Enabled = false;
                 }
                 else
@@ -206,6 +218,12 @@ namespace Bezopasnost
                     testik();
                     schetchik = 0;
                     button1.Text = "Далее >> ";
+                    checkBox1.Checked = false;
+                    checkBox2.Checked = false;
+                    checkBox3.Checked = false;
+                    checkBox4.Checked = false;
+                    checkBox5.Checked = false;
+
                     textBox1.Text = "Вопрос " + vop.ToString() + ". " + dataGridView1.Rows[schetchik].Cells[0].Value.ToString();
                     schetchik += 1;
                     //-------------------Загрузка ответов------------------
@@ -215,6 +233,11 @@ namespace Bezopasnost
             else
             {
                 button1.Text = "Далее >> ";
+                checkBox1.Checked = false;
+                checkBox2.Checked = false;
+                checkBox3.Checked = false;
+                checkBox4.Checked = false;
+                checkBox5.Checked = false;
                 textBox1.Text = "Вопрос " + vop.ToString() + ". " + dataGridView1.Rows[schetchik].Cells[0].Value.ToString();
                 schetchik += 1;
                 //-------------------Загрузка ответов------------------
@@ -256,11 +279,15 @@ namespace Bezopasnost
                 itog = (kolP * 100) / (kolP + kolN);
             }
             else button1.Enabled = true;
+
             button3.BackColor = SystemColors.Control;
+
             button4.BackColor = SystemColors.Control;
             button5.BackColor = SystemColors.Control;
             button6.BackColor = SystemColors.Control;
             button7.BackColor = SystemColors.Control;
+
+
             for (int j = 0; j <= 4; j++) {
                 k[j] = 0;
             }
@@ -270,6 +297,11 @@ namespace Bezopasnost
             button5.Enabled = false;
             button6.Enabled = false;
             button7.Enabled = false;
+            checkBox1.Enabled = false;
+            checkBox2.Enabled = false;
+            checkBox3.Enabled = false;
+            checkBox4.Enabled = false;
+            checkBox5.Enabled = false;
 
 
         }
@@ -406,6 +438,101 @@ namespace Bezopasnost
 
             }
             textBox2.Text = textBox2.Text + "\r\n";
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void checkBox1_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == true)
+            {
+                if (button3.BackColor == SystemColors.Control)
+                {
+                    button3.BackColor = SystemColors.GradientInactiveCaption;
+                    k[0] = 1;
+                }
+                else
+                {
+                    button3.BackColor = SystemColors.Control;
+                    k[0] = 0;
+                }
+            }
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked == true)
+            {
+                if (button4.BackColor == SystemColors.Control)
+                {
+                    button4.BackColor = SystemColors.GradientInactiveCaption;
+                    k[1] = 1;
+                }
+                else
+                {
+                    button4.BackColor = SystemColors.Control;
+                    k[1] = 0;
+                }
+            }
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox3.Checked == true)
+            {
+                if (button5.BackColor == SystemColors.Control)
+                {
+                    button5.BackColor = SystemColors.GradientInactiveCaption;
+                    k[2] = 1;
+                }
+                else
+                {
+                    button5.BackColor = SystemColors.Control;
+                    k[2] = 0;
+                }
+            }
+        }
+
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox4.Checked == true)
+            {
+                if (button6.BackColor == SystemColors.Control)
+                {
+                    button6.BackColor = SystemColors.GradientInactiveCaption;
+                    k[3] = 1;
+                }
+                else
+                {
+                    button6.BackColor = SystemColors.Control;
+                    k[3] = 0;
+                }
+            }
+        }
+
+        private void checkBox5_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox5.Checked == true)
+            {
+                if (button7.BackColor == SystemColors.Control)
+                {
+                    button7.BackColor = SystemColors.GradientInactiveCaption;
+                    k[4] = 1;
+                }
+                else
+                {
+                    button7.BackColor = SystemColors.Control;
+                    k[4] = 0;
+                }
+            }
         }
     }
 }

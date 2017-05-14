@@ -19,14 +19,16 @@ namespace Bezopasnost
         public string connect = "Data Source=localhost;Initial Catalog=bezopasn;Integrated Security=True";
         private void Form1_Load(object sender, EventArgs e)
         {
-            //справочникиToolStripMenuItem.Visible = false;
-            //экзаменToolStripMenuItem.Visible = false;
-           // обучениеToolStripMenuItem.Visible = false;
-           // тестированиеToolStripMenuItem.Visible = false;
-            //комиссияToolStripMenuItem.Visible = false;
-            //загрузкаToolStripMenuItem.Visible = false;
-            //журналСтатистикиToolStripMenuItem.Visible = false;
-           // режимыToolStripMenuItem.Visible = false;
+            справочникиToolStripMenuItem.Visible = false;
+            режимыToolStripMenuItem.Visible = false;
+            журналСтатистикиToolStripMenuItem.Visible = false;
+            комиссияToolStripMenuItem.Visible = false;
+            уведомленияToolStripMenuItem.Visible = false;
+            загрузкаToolStripMenuItem.Visible = false;
+            справкаToolStripMenuItem.Visible = false;
+            настройкаToolStripMenuItem.Visible = false;
+            экзаменToolStripMenuItem.Visible = false;
+
             
             this.IsMdiContainer = true; 
             Vhod vh = new Vhod();
@@ -37,15 +39,28 @@ namespace Bezopasnost
                 обучениеToolStripMenuItem.Visible = true;
                 тестированиеToolStripMenuItem.Visible = true;
                 справкаToolStripMenuItem.Visible = true;
+                режимыToolStripMenuItem.Visible = true;
             }
 
             if (Dannie.Polzovatel == 1) {
                 справочникиToolStripMenuItem.Visible = true;
                 загрузкаToolStripMenuItem.Visible = true;
                 журналСтатистикиToolStripMenuItem.Visible = true;
+                уведомленияToolStripMenuItem.Visible = true;
+                настройкаToolStripMenuItem.Visible = true;
+                справкаToolStripMenuItem.Visible = true;
             }
-
-         
+            if (Dannie.Polzovatel == 2)
+            {
+                режимыToolStripMenuItem.Visible = true;
+                экзаменToolStripMenuItem.Visible = true;
+                справкаToolStripMenuItem.Visible = true;
+            }
+            if (Dannie.Polzovatel == 3)
+            {
+                комиссияToolStripMenuItem.Visible = true;
+                справкаToolStripMenuItem.Visible = true;
+            }
 
             Vid_r vdr = new Vid_r();
             vdr.MdiParent = this;
@@ -135,6 +150,7 @@ namespace Bezopasnost
 
         private void экзаменToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Dannie.Komiss = 1;
             Ekzam formEkzam = new Ekzam();
             formEkzam.MdiParent = this;
             formEkzam.Show();
@@ -146,7 +162,7 @@ namespace Bezopasnost
 
         private void комиссияToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Dannie.Komiss = 1;
+            Dannie.Komiss = 0;
             Ekzam formEkzam = new Ekzam();
             formEkzam.MdiParent = this;
             formEkzam.Show();
@@ -157,7 +173,7 @@ namespace Bezopasnost
 
         private void экзаменToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Dannie.Komiss = 0;
+            Dannie.Komiss = 2;
             Ekzam formEkzam = new Ekzam();
             formEkzam.MdiParent = this;
             formEkzam.Show();
@@ -169,6 +185,23 @@ namespace Bezopasnost
             Nastrojki nast = new Nastrojki();
             nast.MdiParent = this;
             nast.Show();
+        }
+
+        private void вопросыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DobVop dVop = new DobVop();
+            //dVop.MdiParent = this;
+            dVop.Show();
+        }
+
+        private void справочникиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void режимыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

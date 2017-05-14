@@ -61,6 +61,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(110, 20);
             this.textBox2.TabIndex = 2;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // label1
             // 
@@ -180,7 +181,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Komissiya";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Комиссия";
+            this.Text = "Экзамен";
             this.Activated += new System.EventHandler(this.Komissiya_Activated);
             this.Load += new System.EventHandler(this.Komissiya_Load);
             this.menuStrip1.ResumeLayout(false);

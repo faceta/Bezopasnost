@@ -49,16 +49,24 @@ namespace Bezopasnost
         private void Ekzam_Load(object sender, EventArgs e)
         {
             Ekz();
+            if (Dannie.Komiss == 1) {
+                toolStripButton1.Visible = true;
+                toolStripButton2.Visible = false;
+                toolStripSplitButton1.Visible = false;
+            }
             if (Dannie.Komiss == 0)
             {
-                toolStripSplitButton1.Visible = true;
                 toolStripButton1.Visible = false;
-            }
-            else
-            {
+                toolStripButton2.Visible = true;
                 toolStripSplitButton1.Visible = false;
-                toolStripButton1.Visible = true;
             }
+            if (Dannie.Komiss == 2)
+            {
+                toolStripButton1.Visible = false;
+                toolStripButton2.Visible = false;
+                toolStripSplitButton1.Visible = true;
+            }
+
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -71,6 +79,7 @@ namespace Bezopasnost
             dobKom formDobKom = new dobKom();
             formDobKom.MdiParent = this.MdiParent;
             formDobKom.Show();
+            
         }
 
         private void новыйЭкзаменToolStripMenuItem_Click(object sender, EventArgs e)
@@ -90,15 +99,23 @@ namespace Bezopasnost
         private void Ekzam_Activated(object sender, EventArgs e)
         {
             Ekz();
+            if (Dannie.Komiss == 1)
+            {
+                toolStripButton1.Visible = false;
+                toolStripButton2.Visible = true;
+                toolStripSplitButton1.Visible = false;
+            }
             if (Dannie.Komiss == 0)
             {
-                toolStripSplitButton1.Visible = true;
-                toolStripButton1.Visible = false;
-            }
-            else
-            {
-                toolStripSplitButton1.Visible = false;
                 toolStripButton1.Visible = true;
+                toolStripButton2.Visible = false;
+                toolStripSplitButton1.Visible = false;
+            }
+            if (Dannie.Komiss == 2)
+            {
+                toolStripButton1.Visible = false;
+                toolStripButton2.Visible = false;
+                toolStripSplitButton1.Visible = true;
             }
         }
 

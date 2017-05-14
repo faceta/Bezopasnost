@@ -20,6 +20,14 @@ namespace Bezopasnost
         private void Vhod_Load(object sender, EventArgs e)
         {
             Dannie.Polzovatel = 0;
+            ToolTip tt = new ToolTip();
+            tt.SetToolTip(button1, "Администратор");
+
+            ToolTip tt2 = new ToolTip();
+            tt.SetToolTip(button2, "Работники");
+
+            ToolTip tt3 = new ToolTip();
+            tt.SetToolTip(button3, "Комиссия");
 
             if (Dannie.Polzovatel == 0) {
                 comboBox1.Text = "Гость";

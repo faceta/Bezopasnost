@@ -19,8 +19,8 @@ namespace Bezopasnost
 
         private void вопросыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            EkzamVoprosi ek = new EkzamVoprosi();
-            ek.ShowDialog();
+            DobVop dVop = new DobVop();
+            dVop.Show();
         }
 
         public void up() {
@@ -36,7 +36,8 @@ namespace Bezopasnost
                " FROM Rabotni r " +
                " LEFT JOIN Soderzhanie so ON r.kod_r = so.kod_r " +
                " LEFT JOIN Ekzamen ek ON ek.kod_ek = so.kod_ek " +
-               " WHERE so.kod_ek = " + Dannie.KodEk
+               " WHERE so.kod_ek = " + Dannie.KodEk +
+               " ORDER BY fio"
                ;
             ;
             SqlDataAdapter adapter = new SqlDataAdapter(q, conn);
@@ -103,25 +104,42 @@ namespace Bezopasnost
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int nomStr = dataGridView1.CurrentCell.RowIndex;
-            if (textBox2.Text == "") MessageBox.Show("Ввидите вопрос!");
-            else
+            if (textBox2.BackColor == SystemColors.Window)
             {
-                Form1 f1 = new Form1();
-                SqlConnection sc = new SqlConnection(f1.connect);
-                SqlCommand cmd;
-                sc.Open();
+                int nomStr = dataGridView1.CurrentCell.RowIndex;
+                if (textBox2.Text == "") MessageBox.Show("Ввидите вопрос!");
+                else
+                {
+                    Form1 f1 = new Form1();
+                    SqlConnection sc = new SqlConnection(f1.connect);
+                    SqlCommand cmd;
+                    sc.Open();
 
-                cmd = new SqlCommand("UPDATE Soderzhanie SET ocenka = " + "'" + textBox2.Text + "'" + " Where kod_ek  = " + Dannie.KodEk + " AND kod_r = " + Convert.ToInt32(dataGridView1.Rows[nomStr].Cells[0].Value.ToString()), sc);
+                    cmd = new SqlCommand("UPDATE Soderzhanie SET ocenka = " + "'" + textBox2.Text + "'" + " Where kod_ek  = " + Dannie.KodEk + " AND kod_r = " + Convert.ToInt32(dataGridView1.Rows[nomStr].Cells[0].Value.ToString()), sc);
 
-                cmd.ExecuteNonQuery();
-                sc.Close();
-                //Синхронизация с базой -------------------------------------------------
-                LocalDataCache1SyncAgent syncAgent = new LocalDataCache1SyncAgent();
-                Microsoft.Synchronization.Data.SyncStatistics syncStats = syncAgent.Synchronize();
-                //-----------------------------------------------------------------------
-                up();
+                    cmd.ExecuteNonQuery();
+                    sc.Close();
+                    //Синхронизация с базой -------------------------------------------------
+                    LocalDataCache1SyncAgent syncAgent = new LocalDataCache1SyncAgent();
+                    Microsoft.Synchronization.Data.SyncStatistics syncStats = syncAgent.Synchronize();
+                    //-----------------------------------------------------------------------
+                    up();
 
+                }
+            }
+            else {
+                MessageBox.Show("Некорректный ввод оценки", "Ошибка ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(textBox2.Text) > 1 && Convert.ToInt32(textBox2.Text) < 6)
+            {
+                textBox2.BackColor = SystemColors.Window;
+            }
+            else {
+                textBox2.BackColor = Color.Salmon;
             }
         }
     }

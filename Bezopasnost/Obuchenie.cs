@@ -222,8 +222,8 @@ namespace Bezopasnost
 
         private void button3_Click(object sender, EventArgs e)
         {
-            flashRolic fl = new flashRolic();
-            fl.ShowDialog();
+            //flashRolic fl = new flashRolic();
+            //fl.ShowDialog();
         }
 
         private void button4_Click(object sender, EventArgs e)

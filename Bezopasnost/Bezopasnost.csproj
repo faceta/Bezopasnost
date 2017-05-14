@@ -55,10 +55,6 @@
     <Reference Include="AxInterop.ShockwaveFlashObjects">
       <HintPath>bin\Debug\MyFlash\AxInterop.ShockwaveFlashObjects.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.ShockwaveFlashObjects">
-      <HintPath>bin\Debug\MyFlash\Interop.ShockwaveFlashObjects.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Synchronization, Version=1.0.0.0" />
@@ -136,6 +132,18 @@
     </Compile>
     <Compile Include="dobPudPunktics.Designer.cs">
       <DependentUpon>dobPudPunktics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DobVop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DobVop.Designer.cs">
+      <DependentUpon>DobVop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dobVop2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dobVop2.Designer.cs">
+      <DependentUpon>dobVop2.cs</DependentUpon>
     </Compile>
     <Compile Include="dopPodtem.cs">
       <SubType>Form</SubType>
@@ -354,6 +362,12 @@
     <Compile Include="redVidRabot.Designer.cs">
       <DependentUpon>redVidRabot.cs</DependentUpon>
     </Compile>
+    <Compile Include="redVop2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="redVop2.Designer.cs">
+      <DependentUpon>redVop2.cs</DependentUpon>
+    </Compile>
     <Compile Include="RezhimTest.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -431,6 +445,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="dobPudPunktics.resx">
       <DependentUpon>dobPudPunktics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DobVop.resx">
+      <DependentUpon>DobVop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dobVop2.resx">
+      <DependentUpon>dobVop2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="dopPodtem.resx">
       <DependentUpon>dopPodtem.cs</DependentUpon>
@@ -538,6 +558,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="redVidRabot.resx">
       <DependentUpon>redVidRabot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="redVop2.resx">
+      <DependentUpon>redVop2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RezhimTest.resx">
       <DependentUpon>RezhimTest.cs</DependentUpon>

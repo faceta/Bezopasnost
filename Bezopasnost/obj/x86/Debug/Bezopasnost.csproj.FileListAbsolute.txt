@@ -46,7 +46,6 @@ C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.pdb
 C:\GitHabProg\Bezopasnost\Bezopasnost\bin\Debug\bezopasn.sdf
 C:\GitHabProg\Bezopasnost\Bezopasnost\bin\Debug\Bezopasnost.exe
 C:\GitHabProg\Bezopasnost\Bezopasnost\bin\Debug\Bezopasnost.pdb
-C:\GitHabProg\Bezopasnost\Bezopasnost\bin\Debug\AxInterop.ShockwaveFlashObjects.dll
 C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.csprojResolveAssemblyReference.cache
 C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.ChleniKomis.resources
 C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.dobDolzhn.resources
@@ -101,3 +100,8 @@ C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.dobEkzam.resourc
 C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.dobKom.resources
 C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.Ekzam.resources
 C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.Nastrojki.resources
+C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.DobVop.resources
+C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.dobVop2.resources
+C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.redVop2.resources
+C:\GitHabProg\Bezopasnost\Bezopasnost\bin\Debug\AxInterop.ShockwaveFlashObjects.dll
+C:\GitHabProg\Bezopasnost\Bezopasnost\bin\Debug\Interop.ShockwaveFlashObjects.dll

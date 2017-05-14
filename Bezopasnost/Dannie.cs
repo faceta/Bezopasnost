@@ -43,6 +43,9 @@ namespace Bezopasnost
         public static int Komiss { get; set; }
         //-------------------------------------------------------------------------------------------------------------
         public static int KodRabot { get; set; }
+        public static int KodV { get; set; }
+        public static string VopP { get; set; }
+        public static int KodP2 { get; set; }
 
     }
 }

@@ -29,7 +29,8 @@ namespace Bezopasnost
             string q =
                " SELECT kod_vop," +
                   " vopros AS 'Вопросы' " +
-               " FROM Voprosi "
+               " FROM Voprosi " +
+               " WHERE kod_p = " + Dannie.KodP2
                ;
             ;
             SqlDataAdapter adapter = new SqlDataAdapter(q, conn);
@@ -107,31 +108,11 @@ namespace Bezopasnost
             EkzVop();
         }
 
-        private void dobVop()
-        {
-
-            if (textBox1.Text == "") MessageBox.Show("Заполните поле!");
-            else
-            {
-                Form1 formGlavn = new Form1();
-                SqlConnection sc = new SqlConnection(formGlavn.connect);
-                SqlCommand cmd;
-                sc.Open();
-                cmd = new SqlCommand("INSERT INTO Voprosi(vopros, ek) VALUES ('" + textBox1.Text + "', 'True' )", sc);
-                cmd.ExecuteNonQuery();
-                sc.Close();
-                //Синхронизация с базой -------------------------------------------------
-                LocalDataCache1SyncAgent syncAgent = new LocalDataCache1SyncAgent();
-                Microsoft.Synchronization.Data.SyncStatistics syncStats = syncAgent.Synchronize();
-                //-----------------------------------------------------------------------
-                EkzVop();
-
-            }
-        }
+       
 
         private void button3_Click(object sender, EventArgs e)
         {
-            dobVop();
+           // dobVop();
         }
 
         private void EkzamVoprosi_Activated(object sender, EventArgs e)

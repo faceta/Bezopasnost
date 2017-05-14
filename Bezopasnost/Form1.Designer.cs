@@ -35,6 +35,7 @@
             this.должностиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.группыБезопасностиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.видыРаботToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.вопросыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.членыКомиссииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.экзаменToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.режимыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,11 +77,13 @@
             this.должностиToolStripMenuItem,
             this.группыБезопасностиToolStripMenuItem,
             this.видыРаботToolStripMenuItem,
+            this.вопросыToolStripMenuItem,
             this.членыКомиссииToolStripMenuItem,
             this.экзаменToolStripMenuItem1});
             this.справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
             this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
             this.справочникиToolStripMenuItem.Text = "Справочники";
+            this.справочникиToolStripMenuItem.Click += new System.EventHandler(this.справочникиToolStripMenuItem_Click);
             // 
             // работникиToolStripMenuItem
             // 
@@ -110,6 +113,13 @@
             this.видыРаботToolStripMenuItem.Text = "Виды работ";
             this.видыРаботToolStripMenuItem.Click += new System.EventHandler(this.видыРаботToolStripMenuItem_Click);
             // 
+            // вопросыToolStripMenuItem
+            // 
+            this.вопросыToolStripMenuItem.Name = "вопросыToolStripMenuItem";
+            this.вопросыToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.вопросыToolStripMenuItem.Text = "Вопросы";
+            this.вопросыToolStripMenuItem.Click += new System.EventHandler(this.вопросыToolStripMenuItem_Click);
+            // 
             // членыКомиссииToolStripMenuItem
             // 
             this.членыКомиссииToolStripMenuItem.Name = "членыКомиссииToolStripMenuItem";
@@ -133,25 +143,26 @@
             this.режимыToolStripMenuItem.Name = "режимыToolStripMenuItem";
             this.режимыToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.режимыToolStripMenuItem.Text = "Режимы";
+            this.режимыToolStripMenuItem.Click += new System.EventHandler(this.режимыToolStripMenuItem_Click);
             // 
             // обучениеToolStripMenuItem
             // 
             this.обучениеToolStripMenuItem.Name = "обучениеToolStripMenuItem";
-            this.обучениеToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.обучениеToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.обучениеToolStripMenuItem.Text = "Обучение";
             this.обучениеToolStripMenuItem.Click += new System.EventHandler(this.обучениеToolStripMenuItem_Click);
             // 
             // тестированиеToolStripMenuItem
             // 
             this.тестированиеToolStripMenuItem.Name = "тестированиеToolStripMenuItem";
-            this.тестированиеToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.тестированиеToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.тестированиеToolStripMenuItem.Text = "Тестирование";
             this.тестированиеToolStripMenuItem.Click += new System.EventHandler(this.тестированиеToolStripMenuItem_Click);
             // 
             // экзаменToolStripMenuItem
             // 
             this.экзаменToolStripMenuItem.Name = "экзаменToolStripMenuItem";
-            this.экзаменToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.экзаменToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.экзаменToolStripMenuItem.Text = "Экзамен";
             this.экзаменToolStripMenuItem.Click += new System.EventHandler(this.экзаменToolStripMenuItem_Click);
             // 
@@ -165,8 +176,8 @@
             // комиссияToolStripMenuItem
             // 
             this.комиссияToolStripMenuItem.Name = "комиссияToolStripMenuItem";
-            this.комиссияToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
-            this.комиссияToolStripMenuItem.Text = "Комиссия";
+            this.комиссияToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.комиссияToolStripMenuItem.Text = "Экзамен";
             this.комиссияToolStripMenuItem.Click += new System.EventHandler(this.комиссияToolStripMenuItem_Click);
             // 
             // уведомленияToolStripMenuItem
@@ -251,6 +262,7 @@
         private System.Windows.Forms.ToolStripMenuItem уведомленияToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem экзаменToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem настройкаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem вопросыToolStripMenuItem;
 
 
 

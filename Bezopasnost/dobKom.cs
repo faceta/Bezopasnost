@@ -23,7 +23,8 @@ namespace Bezopasnost
             SqlConnection conn = new SqlConnection(formGlavn.connect);
             string q =
                "SELECT kod_k," +
-                  "fio AS 'Члены комиссии' " +
+                  " fio AS 'Члены комиссии' " +
+                  " ,dolzhnost AS 'Должность' " +
                "FROM Chleni_komissii "
             ;
             SqlDataAdapter adapter = new SqlDataAdapter(q, conn);
@@ -51,6 +52,7 @@ namespace Bezopasnost
             string q2 =
                " SELECT k.kod_k, " +
                   " fio AS 'Комиссия экзамена' " +
+                  
                " FROM Chleni_komissii ck " +
                " JOIN  Komissiya k ON ck.kod_k = k.kod_k " +
                " Where kod_ek = " + Dannie.KodEk
@@ -63,9 +65,9 @@ namespace Bezopasnost
             dataGridView2.DataSource = ds2.Tables[0];
 
             dataGridView2.RowHeadersVisible = false;
-            //dataGridView1.ColumnHeadersVisible = false;
+            dataGridView1.ColumnHeadersVisible = false;
             dataGridView2.Columns[0].Visible = false;
-            dataGridView2.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView2.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView2.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
     

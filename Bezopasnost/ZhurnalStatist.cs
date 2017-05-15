@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Bezopasnost
 {
@@ -19,9 +20,18 @@ namespace Bezopasnost
 
         private void ZhurnalStatist_Load(object sender, EventArgs e)
         {
+            /*
+            chart1.Series["Series1"].Points.AddXY(1, 3); 
+            chart1.Series["Series1"].Points.AddXY(2, 5); 
+            chart1.Series["Series1"].Points.AddXY(3, 7); 
+            chart1.Series["Series1"].Points.AddXY(4, 9); 
+            chart1.Series["Series1"].Points.AddXY(5, 11); 
+            chart1.Series["Series1"].Points.AddXY(6, 11); 
+            chart1.Series["Series1"].Points.AddXY(7.5, 9);
 
-
-       
+            chart1.Series["Series1"].ChartType = SeriesChartType.Spline;
+            chart1.Series["Series1"].IsValueShownAsLabel = true;
+             */
         }
 
         private void ZhurnalStatist_Activated(object sender, EventArgs e)
@@ -113,12 +123,26 @@ namespace Bezopasnost
 
             for (int i = 0; i < dataGridView1.Rows.Count ; i++)
             {
-               chart1.Series["Series1"].Points.AddXY(i, Convert.ToInt32(dataGridView1.Rows[i].Cells[1].Value.ToString()));
+               chart1.Series["Несчастные случаи"].Points.AddXY(i, Convert.ToInt32(dataGridView1.Rows[i].Cells[1].Value.ToString()));
+               chart1.Series["Несчастные случаи"].ChartType = SeriesChartType.Spline;
+               chart1.Series["Несчастные случаи"].IsValueShownAsLabel = true;
+               //chart1.Series["Несчастные случаи"].Points.DataBindXY(dataGridView1.Rows[i].Cells[1].Value.ToString(), dataGridView1.Rows[i].Cells[3].Value.ToString());
             }
 
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
-                chart2.Series["Series1"].Points.AddXY(i, Convert.ToInt32(dataGridView1.Rows[i].Cells[2].Value.ToString()));
+                chart1.Series["Смертельные несчастные случаи"].Points.AddXY(i, Convert.ToInt32(dataGridView1.Rows[i].Cells[2].Value.ToString()));
+                chart1.Series["Смертельные несчастные случаи"].ChartType = SeriesChartType.Spline;
+                chart1.Series["Смертельные несчастные случаи"].IsValueShownAsLabel = true;
+                //chart1.Series["Смертельные несчастные случаи"].Points.DataBindXY(i.ToString(), dataGridView1.Rows[i].Cells[2].Value.ToString());
+            }
+
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                chart1.Series["Общее количество несчастных случаев"].Points.AddXY(i, Convert.ToInt32(dataGridView1.Rows[i].Cells[1].Value.ToString()) + Convert.ToInt32(dataGridView1.Rows[i].Cells[2].Value.ToString()));
+                chart1.Series["Общее количество несчастных случаев"].ChartType = SeriesChartType.Spline;
+                chart1.Series["Общее количество несчастных случаев"].IsValueShownAsLabel = true;
+                //chart1.Series["Смертельные несчастные случаи"].Points.DataBindXY(i.ToString(), dataGridView1.Rows[i].Cells[2].Value.ToString());
             }
         }
     }

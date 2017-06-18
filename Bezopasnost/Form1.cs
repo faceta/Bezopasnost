@@ -19,55 +19,13 @@ namespace Bezopasnost
         public string connect = "Data Source=localhost;Initial Catalog=bezopasn;Integrated Security=True";
         private void Form1_Load(object sender, EventArgs e)
         {
-            справочникиToolStripMenuItem.Visible = false;
-            режимыToolStripMenuItem.Visible = false;
-            журналСтатистикиToolStripMenuItem.Visible = false;
-            комиссияToolStripMenuItem.Visible = false;
-            уведомленияToolStripMenuItem.Visible = false;
-            загрузкаToolStripMenuItem.Visible = false;
-            справкаToolStripMenuItem.Visible = false;
-            настройкаToolStripMenuItem.Visible = false;
-            экзаменToolStripMenuItem.Visible = false;
-
-            
-            this.IsMdiContainer = true; 
+            this.IsMdiContainer = true;
             Vhod vh = new Vhod();
             vh.ShowDialog();
-
-            if (Dannie.Polzovatel == 0) {
-
-                обучениеToolStripMenuItem.Visible = true;
-                тестированиеToolStripMenuItem.Visible = true;
-                справкаToolStripMenuItem.Visible = true;
-                режимыToolStripMenuItem.Visible = true;
-            }
-
-            if (Dannie.Polzovatel == 1) {
-                справочникиToolStripMenuItem.Visible = true;
-                загрузкаToolStripMenuItem.Visible = true;
-                журналСтатистикиToolStripMenuItem.Visible = true;
-                уведомленияToolStripMenuItem.Visible = true;
-                настройкаToolStripMenuItem.Visible = true;
-                справкаToolStripMenuItem.Visible = true;
-            }
-            if (Dannie.Polzovatel == 2)
-            {
-                режимыToolStripMenuItem.Visible = true;
-                экзаменToolStripMenuItem.Visible = true;
-                справкаToolStripMenuItem.Visible = true;
-            }
-            if (Dannie.Polzovatel == 3)
-            {
-                комиссияToolStripMenuItem.Visible = true;
-                справкаToolStripMenuItem.Visible = true;
-            }
-
             Vid_r vdr = new Vid_r();
             vdr.MdiParent = this;
             vdr.Show();
 
-            label1.Text = "Вы вошли как " + Dannie.login;
-            
         }
 
         private void работникиToolStripMenuItem_Click(object sender, EventArgs e)
@@ -202,6 +160,86 @@ namespace Bezopasnost
         private void режимыToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Vhod vhod = new Vhod();
+            vhod.Show();
+        }
+
+        private void Form1_Activated(object sender, EventArgs e)
+        {
+            справочникиToolStripMenuItem.Visible = false;
+            режимыToolStripMenuItem.Visible = false;
+            журналСтатистикиToolStripMenuItem.Visible = false;
+            комиссияToolStripMenuItem.Visible = false;
+            уведомленияToolStripMenuItem.Visible = false;
+            загрузкаToolStripMenuItem.Visible = false;
+            справкаToolStripMenuItem.Visible = false;
+            настройкаToolStripMenuItem.Visible = false;
+            экзаменToolStripMenuItem.Visible = false;
+
+
+            
+
+            if (Dannie.Polzovatel == 0)
+            {
+                справочникиToolStripMenuItem.Visible = false;
+                обучениеToolStripMenuItem.Visible = true;
+                тестированиеToolStripMenuItem.Visible = true;
+                справкаToolStripMenuItem.Visible = true;
+                режимыToolStripMenuItem.Visible = true;
+                журналСтатистикиToolStripMenuItem.Visible = false;
+                комиссияToolStripMenuItem.Visible = false;
+                уведомленияToolStripMenuItem.Visible = false;
+                загрузкаToolStripMenuItem.Visible = false;
+                настройкаToolStripMenuItem.Visible = false;
+                экзаменToolStripMenuItem.Visible = false;
+
+            }
+
+            if (Dannie.Polzovatel == 1)
+            {
+                справочникиToolStripMenuItem.Visible = true;
+                загрузкаToolStripMenuItem.Visible = true;
+                журналСтатистикиToolStripMenuItem.Visible = true;
+                уведомленияToolStripMenuItem.Visible = true;
+                настройкаToolStripMenuItem.Visible = true;
+                справкаToolStripMenuItem.Visible = true;
+                режимыToolStripMenuItem.Visible = false;
+                комиссияToolStripMenuItem.Visible = false;
+            }
+            if (Dannie.Polzovatel == 2)
+            {
+                настройкаToolStripMenuItem.Visible = false;
+                справочникиToolStripMenuItem.Visible = false;
+                режимыToolStripMenuItem.Visible = true;
+                обучениеToolStripMenuItem.Visible = true;
+                тестированиеToolStripMenuItem.Visible = true;
+                экзаменToolStripMenuItem.Visible = true;
+                справкаToolStripMenuItem.Visible = true;
+                комиссияToolStripMenuItem.Visible = false;
+                уведомленияToolStripMenuItem.Visible = false;
+            }
+            if (Dannie.Polzovatel == 3)
+            {
+                настройкаToolStripMenuItem.Visible = false;
+                комиссияToolStripMenuItem.Visible = true;
+                справкаToolStripMenuItem.Visible = true;
+                режимыToolStripMenuItem.Visible = false;
+                уведомленияToolStripMenuItem.Visible = false;
+                справочникиToolStripMenuItem.Visible = false;
+            }
+
+           
+            label1.Text = "Вы вошли как " + Dannie.login;
+            //textBox1.Text = Dannie.login;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
 
     }

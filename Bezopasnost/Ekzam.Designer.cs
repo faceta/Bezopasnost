@@ -34,6 +34,7 @@
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.новыйЭкзаменToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.комиссияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.участникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -53,7 +54,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 28);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(261, 219);
+            this.dataGridView1.Size = new System.Drawing.Size(270, 219);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -66,7 +67,7 @@
             this.toolStripButton2});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(262, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(271, 25);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -74,7 +75,8 @@
             // 
             this.toolStripSplitButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.новыйЭкзаменToolStripMenuItem,
-            this.комиссияToolStripMenuItem});
+            this.комиссияToolStripMenuItem,
+            this.участникиToolStripMenuItem});
             this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
             this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSplitButton1.Name = "toolStripSplitButton1";
@@ -95,6 +97,13 @@
             this.комиссияToolStripMenuItem.Text = "Комиссия";
             this.комиссияToolStripMenuItem.Click += new System.EventHandler(this.комиссияToolStripMenuItem_Click);
             // 
+            // участникиToolStripMenuItem
+            // 
+            this.участникиToolStripMenuItem.Name = "участникиToolStripMenuItem";
+            this.участникиToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.участникиToolStripMenuItem.Text = "Участники";
+            this.участникиToolStripMenuItem.Click += new System.EventHandler(this.участникиToolStripMenuItem_Click);
+            // 
             // toolStripButton1
             // 
             this.toolStripButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -111,7 +120,7 @@
             this.toolStripButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(70, 22);
+            this.toolStripButton2.Size = new System.Drawing.Size(70, 16);
             this.toolStripButton2.Text = "Перейти";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
@@ -119,7 +128,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(262, 247);
+            this.ClientSize = new System.Drawing.Size(271, 247);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Ekzam";
@@ -144,5 +153,6 @@
         private System.Windows.Forms.ToolStripMenuItem комиссияToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripLabel toolStripButton2;
+        private System.Windows.Forms.ToolStripMenuItem участникиToolStripMenuItem;
     }
 }

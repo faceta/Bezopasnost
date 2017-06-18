@@ -105,3 +105,4 @@ C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.dobVop2.resource
 C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.redVop2.resources
 C:\GitHabProg\Bezopasnost\Bezopasnost\bin\Debug\AxInterop.ShockwaveFlashObjects.dll
 C:\GitHabProg\Bezopasnost\Bezopasnost\bin\Debug\Interop.ShockwaveFlashObjects.dll
+C:\GitHabProg\Bezopasnost\Bezopasnost\obj\x86\Debug\Bezopasnost.UchEkzam.resources

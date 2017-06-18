@@ -46,6 +46,6 @@ namespace Bezopasnost
         public static int KodV { get; set; }
         public static string VopP { get; set; }
         public static int KodP2 { get; set; }
-
+        public static int KodEk2 { get; set; }
     }
 }

@@ -132,5 +132,19 @@ namespace Bezopasnost
             
             ek.Show();
         }
+
+        private void toolStripLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void участникиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int nomStr = dataGridView1.CurrentCell.RowIndex;
+            Dannie.KodEk2 = Convert.ToInt32(dataGridView1.Rows[nomStr].Cells[0].Value.ToString());
+
+            UchEkzam ue = new UchEkzam();
+            ue.Show();
+        }
     }
 }

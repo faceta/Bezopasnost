@@ -37,13 +37,6 @@ namespace Bezopasnost
             " WHERE kod_inst = " + Dannie.KodInst +
             " GROUP BY tem.kod_tm, tema "
             ;
-            /*string sql =
-               " SELECT kod_tm " +
-                  " , tema " +
-               " FROM Temi " +
-               " Where kod_inst = " + Dannie.KodInst
-            ;*/
-
             SqlDataAdapter adapter = new SqlDataAdapter(sql, conn);
             DataSet ds = new DataSet();
             conn.Open();
@@ -63,10 +56,6 @@ namespace Bezopasnost
             adapterN.Fill(dsN);
             conn.Close();
             dataGridView4.DataSource = dsN.Tables[0];
-
-            //int prcV = Convert.ToInt32(dataGridView4.Rows[0].Cells[0].Value.ToString());
-            //int prcDV = Convert.ToInt32(dataGridView4.Rows[0].Cells[1].Value.ToString());
-            //int kV = Convert.ToInt32(dataGridView2.Rows[schetchik2 - 1].Cells[2].Value.ToString());
 
             string sql2 =
                 " SELECT vopros, vop.kod_vop, COUNT(otvet), vop.kod_p  " +

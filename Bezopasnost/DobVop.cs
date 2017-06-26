@@ -25,6 +25,7 @@ namespace Bezopasnost
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
+
             Form1 formGlavn = new Form1();
             SqlConnection conn = new SqlConnection(formGlavn.connect);
 
@@ -65,7 +66,7 @@ namespace Bezopasnost
                 dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 //dataGridView1.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridView1.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-           
+
 
                 if (dataGridView1.Rows.Count == 0)
                 {
@@ -88,7 +89,54 @@ namespace Bezopasnost
 
             }
 
+            //----------------------------------------------------------------------------------
+                string punkti = " ";
+                label1.Text = e.Node.Text;
+                lineShape1.Visible = true;
+                textBox1.Text = " ";
+                //label2.MaximumSize = new Size(lineShape1.X2, lineShape1.X1);
+                 
 
+                string sql4 =
+                                " SELECT punkt " +
+                                   " , p.soderzh s1 " +            
+                            " FROM Punkti p" + 
+                            " WHERE punkt = '" + e.Node.Text + "'"
+                            ;
+                
+
+                SqlDataAdapter adapter4 = new SqlDataAdapter(sql4, conn);              
+                DataTable dtTree4 = new DataTable();
+                conn.Open();
+                adapter4.Fill(dtTree4);
+                conn.Close();
+                
+                
+                foreach (DataRow dta4 in dtTree4.Rows)
+                {
+                    textBox1.Text = dta4["s1"].ToString();
+                    
+                    string sql5 =
+                                " SELECT podpunkti" +
+                                    "  ,pp.soderzh s2 " +
+                                " FROM Punkti p" +
+                                " LEFT JOIN  PodPunkti pp ON p.kod_p = pp.kod_p " +
+                                " WHERE punkt = '" + e.Node.Text + "'"
+                                ;
+                    SqlDataAdapter adapter5 = new SqlDataAdapter(sql5, conn);
+                    DataTable dtTree5 = new DataTable();
+                    conn.Open();
+                    adapter5.Fill(dtTree5);
+                    conn.Close();
+
+                    foreach(DataRow dta5 in dtTree5.Rows){
+                        punkti = " ";
+                        punkti = "   " + dta5["podpunkti"].ToString() + " " + dta5["s2"].ToString();
+                        textBox1.Text = textBox1.Text + "\r\n\r\n" + punkti;
+                    }
+
+                }
+                textBox1.Text = textBox1.Text + "\r\n";
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)

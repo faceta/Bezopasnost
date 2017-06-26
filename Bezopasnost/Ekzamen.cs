@@ -179,7 +179,7 @@ namespace Bezopasnost
                     button1.Visible = false;
                     button8.Visible = true;
                     itog = (kolP * 100) / (kolP + kolN);
-                    textBox1.Text = "Вы прошли тест на " + itog.ToString() + "%. Если меньше 90% рекомендуется повторить материал.";
+                    textBox1.Text = "Вы прошли тест на " + itog.ToString() + "%.";
                     button3.Enabled = false;
                     button4.Enabled = false;
                     button5.Enabled = false;
